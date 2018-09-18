@@ -20,11 +20,15 @@ const controls = [
 	{ type: "salad" }
 ];
 
-export default () => {
+export default ({ addIngredient }) => {
 	return (
 		<BuildControlsWrapper>
 			{controls.map(control => (
-				<BuildControl label={control.type} />
+				<BuildControl
+					key={control.type}
+					label={control.type}
+					added={() => addIngredient(control.type)}
+				/>
 			))}
 		</BuildControlsWrapper>
 	);

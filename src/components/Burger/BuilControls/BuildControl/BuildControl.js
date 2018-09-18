@@ -68,12 +68,12 @@ const ButtonMore = styled(Button)`
 	}
 `;
 
-export default ({ label }) => {
+export default ({ label, added }) => {
 	return (
 		<BuildControlWrapper>
 			<Label>{label}</Label>
 			<ButtonLess>Less</ButtonLess>
-			<ButtonMore>More</ButtonMore>
+			<ButtonMore onClick={added}>More</ButtonMore>
 		</BuildControlWrapper>
 	);
 };

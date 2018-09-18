@@ -7,7 +7,7 @@ const BurgerDiv = styled.div`
 	width: 50vh;
 	margin: auto;
 	height: 300px;
-	overflow: hidden;
+	overflow: scroll;
 	text-align: center;
 	font-weight: bold;
 	font-size: 1.2rem;
