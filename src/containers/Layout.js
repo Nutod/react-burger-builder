@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import BurgerBuilder from "../components/BurgerBuilder/BurgerBuilder";
 import "./Layout.css";
 import styled from "styled-components";
-import BurgerIngredient from "../components/Burger/BurgerIngredient/BurgerIngredient";
 
 const MainParagraph = styled.p`
 	font-size: 1.2rem;
@@ -18,8 +17,7 @@ export default class Layout extends Component {
 			<Fragment>
 				<MainParagraph>Header</MainParagraph>
 				<main>
-					{/* <BurgerBuilder /> */}
-					<BurgerIngredient type="salad" />
+					<BurgerBuilder />
 				</main>
 			</Fragment>
 		);

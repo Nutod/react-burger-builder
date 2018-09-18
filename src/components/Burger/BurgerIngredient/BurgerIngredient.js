@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./BurgerIngredient.css";
 import styled from "styled-components";
 
@@ -148,6 +148,6 @@ export default class BurgerIngredient extends Component {
 			default:
 				break;
 		}
-		return <div>{ingredient}</div>;
+		return <Fragment>{ingredient}</Fragment>;
 	}
 }
