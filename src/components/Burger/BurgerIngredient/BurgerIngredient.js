@@ -125,26 +125,26 @@ export default class BurgerIngredient extends Component {
 			case "bread-bottom":
 				ingredient = <BreadBottom />;
 				break;
-			// case "bread-top":
-			// 	ingredient = (
-			// 		<div className="BreadTop">
-			// 			<div className="Seeds1" />
-			// 			<div className="Seeds2" />
-			// 		</div>
-			// 	);
-			// 	break;
-			// case "meat":
-			// 	ingredient = <div className="Meat" />;
-			// 	break;
-			// case "bacon":
-			// 	ingredient = <div className="Bacon" />;
-			// 	break;
+			case "bread-top":
+				ingredient = (
+					<BreadTop>
+						<Seeds1 />
+						<Seeds2 />
+					</BreadTop>
+				);
+				break;
+			case "meat":
+				ingredient = <Meat />;
+				break;
+			case "bacon":
+				ingredient = <Bacon />;
+				break;
 			case "salad":
 				ingredient = <Salad />;
 				break;
-			// case "cheese":
-			// 	ingredient = <div className="Cheese" />;
-			// 	break;
+			case "cheese":
+				ingredient = <Cheese />;
+				break;
 			default:
 				break;
 		}
