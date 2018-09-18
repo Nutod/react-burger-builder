@@ -108,6 +108,13 @@ const Cheese = styled.div`
 	border-radius: 20px;
 `;
 
+const Bacon = styled.div`
+	width: 80%;
+	height: 3%;
+	background: linear-gradient(#bf3813, #c45e38);
+	margin: 2% auto;
+`;
+
 // TODO: Possible refactor to use Functional Component
 export default class BurgerIngredient extends Component {
 	render() {
