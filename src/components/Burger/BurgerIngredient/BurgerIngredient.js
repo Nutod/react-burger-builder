@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 // Possibly break this up into seperate files
 const BreadBottom = styled.div`
@@ -151,3 +152,7 @@ export default class BurgerIngredient extends Component {
 		return <Fragment>{ingredient}</Fragment>;
 	}
 }
+
+BurgerIngredient.propTypes = {
+	type: PropTypes.string.isRequired
+};
