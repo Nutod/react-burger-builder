@@ -21,25 +21,36 @@ export default class BurgerBuilder extends Component {
 	};
 
 	addIngredientHandler = type => {
-		console.log(type);
 		const ingredients = { ...this.state.ingredients };
 		ingredients[type]++;
 
-		const priceAddition = INGREDIENT_PRICES[type];
+		const price = INGREDIENT_PRICES[type];
 		const oldPrice = this.state.totalPrice;
-		const newPrice = oldPrice + priceAddition;
+		const newPrice = oldPrice + price;
 
 		this.setState({ ingredients, totalPrice: newPrice });
 	};
 
-	removeIngredientHandler = () => {};
+	removeIngredientHandler = type => {
+		const ingredients = { ...this.state.ingredients };
+		ingredients[type]--;
+
+		const price = INGREDIENT_PRICES[type];
+		const oldPrice = this.state.totalPrice;
+		const newPrice = oldPrice - price;
+
+		this.setState({ ingredients, totalPrice: newPrice });
+	};
 
 	render() {
 		return (
 			<Fragment>
 				<p>Burger</p>
 				<Burger ingredients={this.state.ingredients} />
-				<BuildControls addIngredient={this.addIngredientHandler} />
+				<BuildControls
+					addIngredient={this.addIngredientHandler}
+					removeIngredient={this.removeIngredientHandler}
+				/>
 			</Fragment>
 		);
 	}
