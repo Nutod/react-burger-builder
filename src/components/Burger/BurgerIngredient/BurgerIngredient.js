@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import "./BurgerIngredient.css";
 import styled from "styled-components";
 
+// Possibly break this up into seperate files
 const BreadBottom = styled.div`
 	height: 13%;
 	width: 80%;
