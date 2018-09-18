@@ -6,7 +6,7 @@ import styled from "styled-components";
 const BurgerDiv = styled.div`
 	width: 50vh;
 	margin: auto;
-	height: 250px;
+	height: 300px;
 	overflow: hidden;
 	text-align: center;
 	font-weight: bold;
@@ -33,12 +33,25 @@ const BurgerDiv = styled.div`
 	}
 `;
 
-const Burger = props => {
+const Burger = ({ ingredients }) => {
+	// Pretty neat logic here
+	let transformedIngredients = Object.keys(ingredients)
+		.map(igKey => {
+			return [...Array(ingredients[igKey])].map((_, i) => (
+				<BurgerIngredient key={igKey + i} type={igKey} />
+			));
+		})
+		.reduce((arr, el) => arr.concat(el), []);
+
+	if (transformedIngredients.length === 0) {
+		transformedIngredients = <p>Please add Ingredients</p>;
+	}
+	console.log(transformedIngredients);
 	return (
 		<BurgerDiv>
 			<p>Burger Component</p>
 			<BurgerIngredient type="bread-top" />
-			<BurgerIngredient type="salad" />
+			{transformedIngredients}
 			<BurgerIngredient type="bread-bottom" />
 		</BurgerDiv>
 	);
