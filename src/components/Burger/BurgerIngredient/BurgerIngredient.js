@@ -92,6 +92,14 @@ const Seeds2 = styled.div`
 	}
 `;
 
+const Meat = styled.div`
+	width: 80%;
+	height: 8%;
+	background: linear-gradient(#7f3608, #702e05);
+	margin: 2% auto;
+	border-radius: 15px;
+`;
+
 // TODO: Possible refactor to use Functional Component
 export default class BurgerIngredient extends Component {
 	render() {
