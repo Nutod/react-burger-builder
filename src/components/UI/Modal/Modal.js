@@ -28,7 +28,7 @@ export default ({ children, show, modalClosed }) => (
 		<Backdrop show={show} clicked={modalClosed} />
 		<ModalWrapper
 			style={{
-				transform: show ? "translateY(0)" : "translateY(-100vh)",
+				transform: show ? "translateY(-10vh)" : "translateY(-100vh)",
 				opacity: show ? "1" : "0"
 			}}
 		>
