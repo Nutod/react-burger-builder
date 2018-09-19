@@ -26,7 +26,7 @@ const NavWrapper = styled.nav`
 export default () => (
 	<Header>
 		<div>MENU</div>
-		<Logo />
+		<Logo logoHeight="100%" />
 		<NavWrapper>
 			<NavigationItems />
 		</NavWrapper>

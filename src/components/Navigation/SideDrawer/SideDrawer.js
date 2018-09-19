@@ -16,7 +16,7 @@ const SideDrawerWrapper = styled.div`
 	box-sizing: border-box;
 	transition: transform 0.3s ease-out;
 
-	@media (min - width: 500px) {
+	@media (min-width: 500px) {
 		display: none;
 	}
 `;
@@ -24,7 +24,7 @@ const SideDrawerWrapper = styled.div`
 export default () => {
 	return (
 		<SideDrawerWrapper>
-			<Logo />
+			<Logo logoHeight="11%" />
 			<nav>
 				<NavigationItems />
 			</nav>

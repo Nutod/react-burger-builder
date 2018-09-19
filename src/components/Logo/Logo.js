@@ -10,12 +10,12 @@ const LogoWrapper = styled.div`
 	border-radius: 5px;
 `;
 
-const LogoImage = styled.img`
-	height: 100%;
-`;
+// const LogoImage = styled.img`
+// 	height: 100%;
+// `;
 
-export default () => (
+export default ({ logoHeight }) => (
 	<LogoWrapper>
-		<LogoImage src={burgerLogo} alt="Logo" />
+		<img src={burgerLogo} alt="Logo" style={{ height: logoHeight }} />
 	</LogoWrapper>
 );
