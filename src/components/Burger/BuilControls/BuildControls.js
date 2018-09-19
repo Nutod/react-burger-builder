@@ -20,7 +20,7 @@ const controls = [
 	{ type: "salad" }
 ];
 
-export default ({ addIngredient, removeIngredient }) => {
+export default ({ addIngredient, removeIngredient, disabled }) => {
 	return (
 		<BuildControlsWrapper>
 			{controls.map(control => (
@@ -29,6 +29,7 @@ export default ({ addIngredient, removeIngredient }) => {
 					label={control.type}
 					added={() => addIngredient(control.type)}
 					removed={() => removeIngredient(control.type)}
+					disable={disabled[control.type]}
 				/>
 			))}
 		</BuildControlsWrapper>

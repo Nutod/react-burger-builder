@@ -33,6 +33,11 @@ export default class BurgerBuilder extends Component {
 
 	removeIngredientHandler = type => {
 		const ingredients = { ...this.state.ingredients };
+		// One way to prevent the negative ingredient count
+		if (ingredients[type] <= 0) {
+			return;
+		}
+
 		ingredients[type]--;
 
 		const price = INGREDIENT_PRICES[type];
@@ -43,6 +48,10 @@ export default class BurgerBuilder extends Component {
 	};
 
 	render() {
+		const disabledInfo = { ...this.state.ingredients };
+		for (let key in disabledInfo) {
+			disabledInfo[key] = disabledInfo[key] <= 0;
+		}
 		return (
 			<Fragment>
 				<p>Burger</p>
@@ -50,6 +59,7 @@ export default class BurgerBuilder extends Component {
 				<BuildControls
 					addIngredient={this.addIngredientHandler}
 					removeIngredient={this.removeIngredientHandler}
+					disabled={disabledInfo}
 				/>
 			</Fragment>
 		);
