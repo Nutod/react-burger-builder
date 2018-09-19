@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Logo from "../../Logo/Logo";
+import NavigationItems from "../NavigationItems/NavigationItems";
 
 const Header = styled.header`
 	height: 56px;
@@ -26,6 +27,8 @@ export default () => (
 	<Header>
 		<div>MENU</div>
 		<Logo />
-		<NavWrapper>...</NavWrapper>
+		<NavWrapper>
+			<NavigationItems />
+		</NavWrapper>
 	</Header>
 );
