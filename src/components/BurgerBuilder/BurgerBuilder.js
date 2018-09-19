@@ -34,9 +34,9 @@ export default class BurgerBuilder extends Component {
 	removeIngredientHandler = type => {
 		const ingredients = { ...this.state.ingredients };
 		// One way to prevent the negative ingredient count
-		if (ingredients[type] <= 0) {
-			return;
-		}
+		// if (ingredients[type] <= 0) {
+		// 	return;
+		// }
 
 		ingredients[type]--;
 
