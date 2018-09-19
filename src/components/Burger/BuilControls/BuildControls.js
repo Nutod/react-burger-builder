@@ -84,7 +84,8 @@ export default ({
 	removeIngredient,
 	disabled,
 	price,
-	purchaseable
+	purchaseable,
+	ordered
 }) => {
 	return (
 		<BuildControlsWrapper>
@@ -100,7 +101,9 @@ export default ({
 					disable={disabled[control.type]}
 				/>
 			))}
-			<OrderButton disabled={!purchaseable}>Order Now</OrderButton>
+			<OrderButton disabled={!purchaseable} onClick={ordered}>
+				Order Now
+			</OrderButton>
 		</BuildControlsWrapper>
 	);
 };

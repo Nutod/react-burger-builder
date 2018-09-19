@@ -21,4 +21,11 @@ const ModalWrapper = styled.div`
 		}
 `;
 
-export default ({ children }) => <ModalWrapper>{children}</ModalWrapper>;
+// Added the style for animation purposes
+export default ({ children, show }) => (
+	<ModalWrapper
+		style={{ transform: show ? "translateY(0)" : "translateY(-100vh)" }}
+	>
+		{children}
+	</ModalWrapper>
+);
