@@ -21,8 +21,8 @@ export default class BurgerBuilder extends Component {
 		purchaseable: false
 	};
 
-	updatePurchaseState = () => {
-		const ingredients = { ...this.state.ingredients };
+	updatePurchaseState = ingredients => {
+		// Pass the ingredient because of the batching by setState
 		const sum = Object.keys(ingredients)
 			.map(igKey => ingredients[igKey])
 			.reduce((acc, value) => acc + value);
@@ -38,8 +38,8 @@ export default class BurgerBuilder extends Component {
 		const oldPrice = this.state.totalPrice;
 		const newPrice = oldPrice + price;
 
-		this.updatePurchaseState();
 		this.setState({ ingredients, totalPrice: newPrice });
+		this.updatePurchaseState(ingredients);
 	};
 
 	removeIngredientHandler = type => {
@@ -55,8 +55,8 @@ export default class BurgerBuilder extends Component {
 		const oldPrice = this.state.totalPrice;
 		const newPrice = oldPrice - price;
 
-		this.updatePurchaseState();
 		this.setState({ ingredients, totalPrice: newPrice });
+		this.updatePurchaseState(ingredients);
 	};
 
 	render() {
