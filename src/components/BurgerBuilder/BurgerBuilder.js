@@ -89,7 +89,6 @@ export default class BurgerBuilder extends Component {
 						price={this.state.totalPrice}
 					/>
 				</Modal>
-				<p>Burger</p>
 				<Burger ingredients={this.state.ingredients} />
 				<BuildControls
 					addIngredient={this.addIngredientHandler}
