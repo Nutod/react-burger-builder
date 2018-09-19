@@ -1,5 +1,4 @@
 import React from "react";
-import "./Burger.css";
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 import styled from "styled-components";
 
@@ -46,7 +45,7 @@ const Burger = ({ ingredients }) => {
 	if (transformedIngredients.length === 0) {
 		transformedIngredients = <p>Please add Ingredients</p>;
 	}
-	
+
 	return (
 		<BurgerDiv>
 			<p>Burger Component</p>

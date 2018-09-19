@@ -78,6 +78,7 @@ const controls = [
 	{ type: "salad" }
 ];
 
+// TODO: Use Portal for opening the Modal
 export default ({
 	addIngredient,
 	removeIngredient,
