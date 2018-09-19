@@ -9,4 +9,5 @@ const BackdropWrapper = styled.div`
 	background-color: rgba(0, 0, 0, 0.3);
 `;
 
-export default ({ show }) => (show ? <BackdropWrapper /> : null);
+export default ({ show, clicked }) =>
+	show ? <BackdropWrapper onClick={clicked} /> : null;

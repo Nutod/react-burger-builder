@@ -23,9 +23,9 @@ const ModalWrapper = styled.div`
 `;
 
 // Added the style for animation purposes
-export default ({ children, show }) => (
+export default ({ children, show, modalClosed }) => (
 	<Fragment>
-		<Backdrop show={show} />
+		<Backdrop show={show} clicked={modalClosed} />
 		<ModalWrapper
 			style={{
 				transform: show ? "translateY(0)" : "translateY(-100vh)",
