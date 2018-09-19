@@ -20,9 +20,12 @@ const controls = [
 	{ type: "salad" }
 ];
 
-export default ({ addIngredient, removeIngredient, disabled }) => {
+export default ({ addIngredient, removeIngredient, disabled, price }) => {
 	return (
 		<BuildControlsWrapper>
+			<p>
+				Current Price: <strong>{price.toFixed(2)}</strong>
+			</p>
 			{controls.map(control => (
 				<BuildControl
 					key={control.type}
