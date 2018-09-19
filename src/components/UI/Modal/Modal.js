@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
+import Backdrop from "../Backdrop/Backdrop";
 
 const ModalWrapper = styled.div`
 		position: fixed;
@@ -23,9 +24,15 @@ const ModalWrapper = styled.div`
 
 // Added the style for animation purposes
 export default ({ children, show }) => (
-	<ModalWrapper
-		style={{ transform: show ? "translateY(0)" : "translateY(-100vh)" }}
-	>
-		{children}
-	</ModalWrapper>
+	<Fragment>
+		<Backdrop show={show} />
+		<ModalWrapper
+			style={{
+				transform: show ? "translateY(0)" : "translateY(-100vh)",
+				opacity: show ? "1" : "0"
+			}}
+		>
+			{children}
+		</ModalWrapper>
+	</Fragment>
 );
