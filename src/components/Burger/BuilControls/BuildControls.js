@@ -103,6 +103,7 @@ export default ({
 			))}
 			<OrderButton disabled={!purchaseable} onClick={ordered}>
 				Order Now
+				{/* <span role="img">🚀</span> */}
 			</OrderButton>
 		</BuildControlsWrapper>
 	);
