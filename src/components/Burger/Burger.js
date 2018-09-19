@@ -46,7 +46,7 @@ const Burger = ({ ingredients }) => {
 	if (transformedIngredients.length === 0) {
 		transformedIngredients = <p>Please add Ingredients</p>;
 	}
-	console.log(transformedIngredients);
+	
 	return (
 		<BurgerDiv>
 			<p>Burger Component</p>
