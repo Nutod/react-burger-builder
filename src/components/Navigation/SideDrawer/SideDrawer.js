@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import styled from "styled-components";
+import Backdrop from "../../UI/Backdrop/Backdrop";
 
 const SideDrawerWrapper = styled.div`
 	position: fixed;
@@ -14,21 +15,41 @@ const SideDrawerWrapper = styled.div`
 	background-color: white;
 	padding: 32px 16px;
 	box-sizing: border-box;
-	transition: transform 0.3s ease-out;
+	transition: transform 0.7s ease-out;
 
 	@media (min-width: 500px) {
 		display: none;
 	}
 `;
 
-export default () => {
-	return (
+const SideDrawerClose = styled(SideDrawerWrapper)`
+	transform: translateX(-100%);
+`;
+
+export default ({ open, closed }) => {
+	let sideDrawer = (
 		<SideDrawerWrapper>
 			<Logo logoHeight="11%" />
-			<nav>
+			<nav style={{ marginTop: "-50vh", marginLeft: "10px" }}>
 				<NavigationItems />
 			</nav>
 		</SideDrawerWrapper>
+	);
+	if (!open) {
+		sideDrawer = (
+			<SideDrawerClose>
+				<Logo logoHeight="11%" />
+				<nav style={{ marginTop: "-50vh", marginLeft: "10px" }}>
+					<NavigationItems />
+				</nav>
+			</SideDrawerClose>
+		);
+	}
+	return (
+		<Fragment>
+			<Backdrop show={open} clicked={closed} />
+			{sideDrawer}
+		</Fragment>
 	);
 };
 
