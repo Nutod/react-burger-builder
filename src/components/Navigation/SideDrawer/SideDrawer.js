@@ -15,7 +15,7 @@ const SideDrawerWrapper = styled.div`
 	background-color: white;
 	padding: 32px 16px;
 	box-sizing: border-box;
-	transition: transform 0.7s ease-out;
+	transition: transform 1s ease-out;
 
 	@media (min-width: 500px) {
 		display: none;

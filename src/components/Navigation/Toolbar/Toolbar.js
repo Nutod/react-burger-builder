@@ -27,9 +27,40 @@ const NavWrapper = styled.nav`
 	}
 `;
 
-export default () => (
+const Menu = styled.div`
+	width: 25px;
+	height: 5px;
+	background-color: #fff;
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: -7px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 7px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+	}
+
+	@media (min-width: 500px) {
+		display: none;
+	}
+`;
+
+export default ({ openSidebar }) => (
 	<Header>
-		<div>MENU</div>
+		<Menu onClick={openSidebar} />
 		<Logo logoHeight="100%" />
 		<NavWrapper>
 			<NavigationItems />

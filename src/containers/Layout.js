@@ -8,7 +8,11 @@ import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
 // Main tag added for semantic purposes
 export default class Layout extends Component {
 	state = {
-		showSideDrawer: true
+		showSideDrawer: false
+	};
+
+	sideDrawerOpenHandler = () => {
+		this.setState({ showSideDrawer: true });
 	};
 
 	sideDrawerCloseHandler = () => {
@@ -22,7 +26,7 @@ export default class Layout extends Component {
 					open={this.state.showSideDrawer}
 					closed={this.sideDrawerCloseHandler}
 				/>
-				<Toolbar />
+				<Toolbar openSidebar={this.sideDrawerOpenHandler} />
 				<main>
 					<BurgerBuilder />
 				</main>
