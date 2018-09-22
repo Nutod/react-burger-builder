@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import axios from "axios";
+
 import Burger from "../Burger/Burger";
 import BuildControls from "../Burger/BuilControls/BuildControls";
 import Modal from "../UI/Modal/Modal";
@@ -67,7 +69,13 @@ export default class BurgerBuilder extends Component {
 	};
 
 	purchaseContinueHandler = () => {
-		alert("Continued");
+		axios
+			.post("https://burger-react-d3b90.firebaseio.com/orders.json", {
+				ingredients: this.state.ingredients,
+				price: this.state.totalPrice
+			})
+			.then(response => console.log(response))
+			.catch(error => console.log(error));
 	};
 
 	purchaseCancelHandler = () => {
