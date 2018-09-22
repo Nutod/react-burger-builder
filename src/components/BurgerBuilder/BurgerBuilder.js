@@ -5,6 +5,7 @@ import Burger from "../Burger/Burger";
 import BuildControls from "../Burger/BuilControls/BuildControls";
 import Modal from "../UI/Modal/Modal";
 import OrderSummary from "../Burger/OrderSummary/OrderSummary";
+import withError from "../../HOCs/withError/withError";
 
 const INGREDIENT_PRICES = {
 	salad: 1,
@@ -13,7 +14,7 @@ const INGREDIENT_PRICES = {
 	cheese: 1.1
 };
 
-export default class BurgerBuilder extends Component {
+class BurgerBuilder extends Component {
 	state = {
 		ingredients: {
 			bacon: 0,
@@ -110,3 +111,5 @@ export default class BurgerBuilder extends Component {
 		);
 	}
 }
+
+export default withError(BurgerBuilder, axios);
