@@ -6,6 +6,7 @@ import BuildControls from "../Burger/BuilControls/BuildControls";
 import Modal from "../UI/Modal/Modal";
 import OrderSummary from "../Burger/OrderSummary/OrderSummary";
 import withError from "../../HOCs/withError/withError";
+import Spinner from "../UI/Spinner/Spinner";
 
 const INGREDIENT_PRICES = {
 	salad: 1,
@@ -16,15 +17,16 @@ const INGREDIENT_PRICES = {
 
 class BurgerBuilder extends Component {
 	state = {
-		ingredients: {
-			bacon: 0,
-			cheese: 0,
-			meat: 0,
-			salad: 0
-		},
+		ingredients: null,
 		totalPrice: 5,
 		purchaseable: false,
 		purchasing: false
+	};
+
+	componentDidMount = () => {
+		axios
+			.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
+			.then(response => this.setState({ ingredients: response.data }));
 	};
 
 	updatePurchaseState = ingredients => {
@@ -88,25 +90,35 @@ class BurgerBuilder extends Component {
 		for (let key in disabledInfo) {
 			disabledInfo[key] = disabledInfo[key] <= 0;
 		}
+
+		let burger = <Spinner />;
+
+		if (this.state.ingredients) {
+			burger = (
+				<Fragment>
+					<Burger ingredients={this.state.ingredients} />
+					<BuildControls
+						addIngredient={this.addIngredientHandler}
+						removeIngredient={this.removeIngredientHandler}
+						disabled={disabledInfo}
+						price={this.state.totalPrice}
+						purchaseable={this.state.purchaseable}
+						ordered={this.purchaseHandler}
+					/>
+				</Fragment>
+			);
+		}
 		return (
 			<Fragment>
-				<Modal show={this.state.purchasing} modalClosed={this.purchaseHandler}>
+				{/* <Modal show={this.state.purchasing} modalClosed={this.purchaseHandler}>
 					<OrderSummary
 						ingredients={this.state.ingredients}
 						continued={this.purchaseContinueHandler}
 						cancelled={this.purchaseCancelHandler}
 						price={this.state.totalPrice}
 					/>
-				</Modal>
-				<Burger ingredients={this.state.ingredients} />
-				<BuildControls
-					addIngredient={this.addIngredientHandler}
-					removeIngredient={this.removeIngredientHandler}
-					disabled={disabledInfo}
-					price={this.state.totalPrice}
-					purchaseable={this.state.purchaseable}
-					ordered={this.purchaseHandler}
-				/>
+				</Modal> */}
+				{burger}
 			</Fragment>
 		);
 	}

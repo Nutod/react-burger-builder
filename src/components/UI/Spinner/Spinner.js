@@ -1,4 +1,4 @@
-// import React from "react";
-// import styled, { keyframes } from "styled-components";
+import React from "react";
+import { DoubleBounce } from "styled-spinkit";
 
-// export default () => <SpinnerWrapper />;
+export default () => <DoubleBounce color="#703B09" />;

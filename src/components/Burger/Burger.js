@@ -48,7 +48,6 @@ const Burger = ({ ingredients }) => {
 
 	return (
 		<BurgerDiv>
-			<p>Burger Component</p>
 			<BurgerIngredient type="bread-top" />
 			{transformedIngredients}
 			<BurgerIngredient type="bread-bottom" />

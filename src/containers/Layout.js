@@ -27,7 +27,7 @@ export default class Layout extends Component {
 					closed={this.sideDrawerCloseHandler}
 				/>
 				<Toolbar openSidebar={this.sideDrawerOpenHandler} />
-				<main>
+				<main style={{ marginTop: "7rem" }}>
 					<BurgerBuilder />
 				</main>
 			</Fragment>

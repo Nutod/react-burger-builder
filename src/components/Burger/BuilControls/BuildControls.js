@@ -37,6 +37,7 @@ const OrderButton = styled.button`
 	box-shadow: 2px 2px 2px #966909;
 	width: 50vw;
 	margin: 0 auto;
+	margin-top: -4rem;
 	text-transform: uppercase;
 
 	&:disabled {
