@@ -53,8 +53,8 @@ const NavigationLink = styled.a`
 	}
 `;
 
-export default ({ link }) => (
+export default ({ link, displayText }) => (
 	<NavigationListItem>
-		<NavLink to="/">{link}</NavLink>
+		<NavLink to={link}>{displayText}</NavLink>
 	</NavigationListItem>
 );

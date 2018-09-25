@@ -18,7 +18,7 @@ const NavigationList = styled.ul`
 
 export default () => (
 	<NavigationList>
-		<NavigationItem link="Burger" />
-		<NavigationItem link="Checkout" />
+		<NavigationItem link="/" displayText="Burger" />
+		<NavigationItem link="/checkout" displayText="Checkout" />
 	</NavigationList>
 );
