@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { NavLink } from "react-router-dom";
+
 const NavigationListItem = styled.li`
 	margin: 10px 0;
 	box-sizing: border-box;
@@ -53,6 +55,6 @@ const NavigationLink = styled.a`
 
 export default ({ link }) => (
 	<NavigationListItem>
-		<NavigationLink>{link}</NavigationLink>
+		<NavLink to="/">{link}</NavLink>
 	</NavigationListItem>
 );
