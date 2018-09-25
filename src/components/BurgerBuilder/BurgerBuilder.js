@@ -79,7 +79,10 @@ class BurgerBuilder extends Component {
 			})
 			.then(response => {
 				console.log(response);
-				this.props.history.push("/checkout");
+				this.props.history.push("/checkout", {
+					ingredients: { ...this.state.ingredients },
+					price: this.state.totalPrice
+				});
 			})
 			.catch(error => console.log(error));
 	};
