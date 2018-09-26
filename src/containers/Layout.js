@@ -4,6 +4,7 @@ import Toolbar from "../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
 import { Switch, Route } from "react-router-dom";
 import Checkout from "./Checkout/Checkout";
+import Orders from "./Orders/Orders";
 
 // Running yarn eject means you still have to run npm install afterwards as the entire app breaks as of React 16.5
 
@@ -31,6 +32,7 @@ export default class Layout extends Component {
 				<Toolbar openSidebar={this.sideDrawerOpenHandler} />
 				<main style={{ marginTop: "7rem" }}>
 					<Switch>
+						<Route path="/orders" component={Orders} />
 						<Route path="/checkout" component={Checkout} />
 						<Route path="/" exact component={BurgerBuilder} />
 					</Switch>
