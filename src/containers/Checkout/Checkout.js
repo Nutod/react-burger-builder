@@ -1,30 +1,21 @@
-import React, { Component, Fragment } from "react";
-import Burger from "../../components/Burger/Burger";
+import React, { Component } from "react";
+import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 
-export default class extends Component {
+class Checkout extends Component {
 	state = {
-		ingredients: null
-	}
-
-	componentDidMount = () => {
-		this.setState({ingredients: this.props.location.state.ingredients})
-		console.log(this.props.location.state);
+		ingredients: {
+			bacon: 1,
+			cheese: 1
+		}
 	};
 
 	render() {
-		let burger = (
-			<p style={{ textAlign: "center" }}>No ingredients available</p>
-		);
-
-		if (this.state.ingredients) {
-			burger = <Burger ingredients={this.state.ingredients} />;
-		}
-
 		return (
-			<Fragment>
-				<h3 style={{ textAlign: "center" }}>Here's the Order</h3>
-				{burger}
-			</Fragment>
+			<div>
+				<CheckoutSummary ingredients={this.state.ingredients} />
+			</div>
 		);
 	}
 }
+
+export default Checkout;
