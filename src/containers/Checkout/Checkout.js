@@ -9,6 +9,14 @@ class Checkout extends Component {
 		}
 	};
 
+	cancelHandler = () => {
+		this.props.history.goBack();
+	};
+
+	continueHandler = () => {
+		this.props.history.replace("/checkout/contact-data");
+	};
+
 	render() {
 		return (
 			<div>

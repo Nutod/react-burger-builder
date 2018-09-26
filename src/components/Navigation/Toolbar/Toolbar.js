@@ -17,6 +17,7 @@ const Header = styled.header`
 	box-sizing: border-box;
 	background-color: #703b09;
 	color: #fff;
+	margin-bottom: 7rem;
 `;
 
 const NavWrapper = styled.nav`

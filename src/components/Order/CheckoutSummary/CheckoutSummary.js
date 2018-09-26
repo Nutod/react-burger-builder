@@ -20,11 +20,11 @@ const checkoutSummary = props => {
 	return (
 		<CheckoutSummaryWrapper>
 			<h3>We Hope it tastes nice</h3>
-			<div style={{ width: "300px", height: "300px", margin: "auto" }}>
+			<div style={{ width: "300px", margin: "auto", marginBottom: "-7rem" }}>
 				<Burger ingredients={props.ingredients} />
 			</div>
-			<ButtonDanger>Cancel</ButtonDanger>
-			<ButtonSuccess>Continue</ButtonSuccess>
+			<ButtonDanger onClick={props.cancelled}>Cancel</ButtonDanger>
+			<ButtonSuccess onClick={props.continued}>Continue</ButtonSuccess>
 		</CheckoutSummaryWrapper>
 	);
 };
