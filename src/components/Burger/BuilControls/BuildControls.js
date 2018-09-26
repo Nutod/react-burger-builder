@@ -102,7 +102,7 @@ export default ({
 					disable={disabled[control.type]}
 				/>
 			))}
-			<OrderButton disabled={!purchaseable} onClick={ordered}>
+			<OrderButton style={{marginTop: '15px'}} disabled={!purchaseable} onClick={ordered}>
 				Order Now
 				{/* <span role="img">🚀</span> */}
 			</OrderButton>
