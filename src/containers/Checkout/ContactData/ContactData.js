@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 import { ButtonSuccess } from "../../../components/Burger/OrderSummary/OrderSummary";
+import Spinner from "../../../components/UI/Spinner/Spinner";
 
 const ContactDataWrapper = styled.div`
 	margin: 20px auto;
@@ -30,28 +33,47 @@ class ContactData extends Component {
 		address: {
 			street: "",
 			postalCode: ""
-		}
+		},
+		loading: false
 	};
 
 	orderHandler = event => {
 		event.preventDefault();
-		alert("Someone clicked something...");
+		this.setState({ loading: true });
+		axios
+			.post("https://burger-react-d3b90.firebaseio.com/orders.json", {
+				ingredients: this.props.ingredients,
+				price: this.props.price
+			})
+			.then(response => {
+				this.setState({ loading: false });
+				this.props.history.push("/");
+			})
+			.catch(error => console.log(error));
 	};
 
 	render() {
+		let orderForm = (
+			<form onSubmit={this.orderHandler}>
+				<Input type="text" name="name" placeholder="Your Name" />
+				<Input type="email" name="email" placeholder="Your Email" />
+				<Input type="text" name="street" placeholder="Your Street" />
+				<Input type="text" name="postalcode" placeholder="Your Postal Code" />
+				<ButtonSuccess>ORDER</ButtonSuccess>
+			</form>
+		);
+
+		if (this.state.loading) {
+			orderForm = <Spinner />;
+		}
+
 		return (
 			<ContactDataWrapper>
 				<h4>Enter Contact Data</h4>
-				<form onSubmit={this.orderHandler}>
-					<Input type="text" name="name" placeholder="Your Name" />
-					<Input type="email" name="email" placeholder="Your Email" />
-					<Input type="text" name="street" placeholder="Your Street" />
-					<Input type="text" name="postalcode" placeholder="Your Postal Code" />
-					<ButtonSuccess>ORDER</ButtonSuccess>
-				</form>
+				{orderForm}
 			</ContactDataWrapper>
 		);
 	}
 }
 
-export default ContactData;
+export default withRouter(ContactData);
