@@ -16,6 +16,14 @@ const NavigationListItem = styled.li`
 		width: auto;
 		align-items: center;
 	}
+
+	& > * {
+		color: #8f5c2c;
+		text-decoration: none;
+		width: 100 %;
+		box-sizing: border-box;
+		display: block;
+	}
 `;
 
 const NavigationLink = styled.a`
