@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
 
-const Button = styled.button`
+export const Button = styled.button`
 	background-color: transparent;
 	border: none;
 	color: white;
@@ -17,11 +17,11 @@ const Button = styled.button`
 		padding-left: 0;
 	}
 `;
-const ButtonSuccess = styled(Button)`
+export const ButtonSuccess = styled(Button)`
 	color: #5c9210;
 `;
 
-const ButtonDanger = styled(Button)`
+export const ButtonDanger = styled(Button)`
 	color: #944317;
 `;
 
