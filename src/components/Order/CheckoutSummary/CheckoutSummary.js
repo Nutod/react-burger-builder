@@ -6,7 +6,7 @@ import {
 } from "../../Burger/OrderSummary/OrderSummary";
 import styled from "styled-components";
 
-const checkoutSummaryWrapper = styled.div`
+const CheckoutSummaryWrapper = styled.div`
 	text-align: center;
 	width: 100%;
 	margin: auto;
@@ -18,14 +18,14 @@ const checkoutSummaryWrapper = styled.div`
 
 const checkoutSummary = props => {
 	return (
-		<checkoutSummaryWrapper>
+		<CheckoutSummaryWrapper>
 			<h3>We Hope it tastes nice</h3>
 			<div style={{ width: "300px", height: "300px", margin: "auto" }}>
 				<Burger ingredients={props.ingredients} />
 			</div>
 			<ButtonDanger>Cancel</ButtonDanger>
 			<ButtonSuccess>Continue</ButtonSuccess>
-		</checkoutSummaryWrapper>
+		</CheckoutSummaryWrapper>
 	);
 };
 

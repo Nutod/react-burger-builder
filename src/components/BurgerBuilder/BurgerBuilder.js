@@ -77,20 +77,21 @@ class BurgerBuilder extends Component {
 	};
 
 	purchaseContinueHandler = () => {
-		this.setState({ loading: true });
-		axios
-			.post("https://burger-react-d3b90.firebaseio.com/orders.json", {
-				ingredients: this.state.ingredients,
-				price: this.state.totalPrice
-			})
-			.then(response => {
-				console.log(response);
-				this.props.history.push("/checkout", {
-					ingredients: { ...this.state.ingredients },
-					price: this.state.totalPrice
-				});
-			})
-			.catch(error => console.log(error));
+		// this.setState({ loading: true });
+		// axios
+		// 	.post("https://burger-react-d3b90.firebaseio.com/orders.json", {
+		// 		ingredients: this.state.ingredients,
+		// 		price: this.state.totalPrice
+		// 	})
+		// 	.then(response => {
+		// 		console.log(response);
+		// 		this.props.history.push("/checkout", {
+		// 			ingredients: { ...this.state.ingredients },
+		// 			price: this.state.totalPrice
+		// 		});
+		// 	})
+		// 	.catch(error => console.log(error));
+		this.props.history.push('/checkout');
 	};
 
 	purchaseCancelHandler = () => {
