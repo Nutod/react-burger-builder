@@ -2,16 +2,24 @@ import React, { Component, Fragment } from "react";
 import Burger from "../../components/Burger/Burger";
 
 export default class extends Component {
+	state = {
+		ingredients: null
+	}
+
 	componentDidMount = () => {
-		console.log(this.props);
+		this.setState({ingredients: this.props.location.state.ingredients})
+		console.log(this.props.location.state);
 	};
 
 	render() {
-		let burger = <p>No ingredients available</p>;
+		let burger = (
+			<p style={{ textAlign: "center" }}>No ingredients available</p>
+		);
 
-		if (this.props.location.state.ingredients) {
-			burger = <Burger ingredients={this.props.location.state.ingredients} />;
+		if (this.state.ingredients) {
+			burger = <Burger ingredients={this.state.ingredients} />;
 		}
+
 		return (
 			<Fragment>
 				<h3 style={{ textAlign: "center" }}>Here's the Order</h3>
