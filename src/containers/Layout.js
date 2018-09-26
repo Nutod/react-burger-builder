@@ -31,9 +31,8 @@ export default class Layout extends Component {
 				<Toolbar openSidebar={this.sideDrawerOpenHandler} />
 				<main style={{ marginTop: "7rem" }}>
 					<Switch>
-						<Route path="/" exact component={BurgerBuilder} />
 						<Route path="/checkout" component={Checkout} />
-						{/* Route to Checkout */}
+						<Route path="/" exact component={BurgerBuilder} />
 					</Switch>
 				</main>
 			</Fragment>

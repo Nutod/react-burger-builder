@@ -4,17 +4,17 @@ import {
 	ButtonDanger,
 	ButtonSuccess
 } from "../../Burger/OrderSummary/OrderSummary";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const checkoutSummaryWrapper = styled.div`
 	text-align: center;
-	width: 80%;
+	width: 100%;
 	margin: auto;
 
 	@media (min-width: 600px) {
 		width: 500px;
 	}
-`
+`;
 
 const checkoutSummary = props => {
 	return (
