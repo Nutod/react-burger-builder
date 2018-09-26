@@ -20,13 +20,15 @@ class BurgerBuilder extends Component {
 		ingredients: null,
 		totalPrice: 5,
 		purchaseable: false,
-		purchasing: false
+		purchasing: false,
+		loading: false
 	};
 
 	componentDidMount = () => {
 		axios
 			.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
-			.then(response => this.setState({ ingredients: response.data }));
+			.then(response => this.setState({ ingredients: response.data }))
+			.catch(error => console.log(error));
 	};
 
 	updatePurchaseState = ingredients => {
@@ -72,6 +74,7 @@ class BurgerBuilder extends Component {
 	};
 
 	purchaseContinueHandler = () => {
+		this.setState({ loading: true });
 		axios
 			.post("https://burger-react-d3b90.firebaseio.com/orders.json", {
 				ingredients: this.state.ingredients,
@@ -117,14 +120,16 @@ class BurgerBuilder extends Component {
 		return (
 			<Fragment>
 				<Modal show={this.state.purchasing} modalClosed={this.purchaseHandler}>
-					{this.state.ingredients ? (
+					{this.state.ingredients && !this.state.loading ? (
 						<OrderSummary
 							ingredients={this.state.ingredients}
 							continued={this.purchaseContinueHandler}
 							cancelled={this.purchaseCancelHandler}
 							price={this.state.totalPrice}
 						/>
-					) : null}
+					) : (
+						<Spinner />
+					)}
 				</Modal>
 				{burger}
 			</Fragment>
