@@ -13,6 +13,14 @@ const Label = styled.label`
 	margin-bottom: 8px;
 `;
 
+const Select = styled.select`
+	width: 84%;
+	font-family: inherit;
+	padding: 5px 10px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+`;
+
 const Input = styled.input`
 	outline: none;
 	width: 80%;
@@ -32,6 +40,13 @@ export default props => {
 	switch (props.elementtype) {
 		case "input":
 			inputElement = <Input {...props.elementconfig} value={props.value} />;
+			break;
+		case "select":
+			inputElement = (
+				<Select>
+					<option value="fast">fast</option>
+				</Select>
+			);
 			break;
 		default:
 			inputElement = <p>Input not recognised</p>;
