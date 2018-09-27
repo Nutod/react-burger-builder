@@ -22,7 +22,15 @@ export default ({ ingredients, price }) => {
 	console.log(ingredient);
 	return (
 		<OrderWrapper>
-			<p>Ingredient: Salad</p>
+			<p>Ingredients</p>
+			{ingredient.map(item => (
+				<span
+					key={item.ingredient}
+					style={{ padding: "5px", border: "1px solid #ccc" }}
+				>
+					{item.ingredient}: {item.value}
+				</span>
+			))}
 			<p>
 				Price: <strong>{price}</strong>
 			</p>
