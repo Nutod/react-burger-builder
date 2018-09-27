@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+const InputWrapper = styled.div`
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+`;
+
 const Input = styled.input`
 	display: block;
 	width: 40vw;
@@ -21,9 +27,9 @@ export default props => {
 	}
 
 	return (
-		<div>
+		<InputWrapper>
 			<label>{props.label}</label>
 			{inputElement}
-		</div>
+		</InputWrapper>
 	);
 };
