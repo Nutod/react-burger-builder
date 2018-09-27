@@ -71,16 +71,36 @@ class ContactData extends Component {
 	orderHandler = event => {
 		event.preventDefault();
 		this.setState({ loading: true });
+
+		const formData = {};
+		for (let formElementIdentifier in this.state.orderForm) {
+			formData[formElementIdentifier] = this.state.orderForm[
+				formElementIdentifier
+			];
+		}
+
+		const order = {
+			ingredients: this.props.ingredients,
+			price: this.props.price,
+			orderData: formData
+		};
+
 		axios
-			.post("https://burger-react-d3b90.firebaseio.com/orders.json", {
-				ingredients: this.props.ingredients,
-				price: this.props.price
-			})
+			.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
 			.then(response => {
 				this.setState({ loading: false });
 				this.props.history.push("/");
 			})
 			.catch(error => console.log(error));
+	};
+
+	inputChangedHandler = (event, inputIdentifier) => {
+		const orderForm = { ...this.state.orderForm };
+		const formElement = { ...orderForm[inputIdentifier] };
+		formElement.value = event.target.value;
+
+		orderForm[inputIdentifier] = formElement;
+		this.setState({ orderForm });
 	};
 
 	render() {
@@ -100,32 +120,9 @@ class ContactData extends Component {
 						elementtype={formElement.config.elementtype}
 						elementconfig={formElement.config.elementconfig}
 						value={formElement.config.value}
+						changed={event => this.inputChangedHandler(event, formElement.id)}
 					/>
 				))}
-				{/* <Input
-					elementtype="input"
-					elementconfig="text"
-					value="name"
-					placeholder="Your Name"
-				/>
-				<Input
-					inputtype="input"
-					type="email"
-					name="email"
-					placeholder="Your Email"
-				/>
-				<Input
-					inputtype="input"
-					type="text"
-					name="street"
-					placeholder="Your Street"
-				/>
-				<Input
-					inputtype="input"
-					type="text"
-					name="postalcode"
-					placeholder="Your Postal Code"
-				/> */}
 				<ButtonSuccess>ORDER</ButtonSuccess>
 			</form>
 		);

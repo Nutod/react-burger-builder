@@ -39,13 +39,21 @@ export default props => {
 	let inputElement = null;
 	switch (props.elementtype) {
 		case "input":
-			inputElement = <Input {...props.elementconfig} value={props.value} />;
+			inputElement = (
+				<Input
+					{...props.elementconfig}
+					value={props.value}
+					onChange={props.changed}
+				/>
+			);
 			break;
 		case "select":
 			inputElement = (
-				<Select value={props.value}>
+				<Select value={props.value} onChange={props.changed}>
 					{props.elementconfig.options.map(option => (
-						<option value={option.value}>{option.displayValue}</option>
+						<option value={option.value} key={option.value}>
+							{option.displayValue}
+						</option>
 					))}
 				</Select>
 			);
