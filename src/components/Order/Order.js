@@ -11,7 +11,15 @@ const OrderWrapper = styled.div`
 `;
 
 export default ({ ingredients, price }) => {
-	console.log(ingredients);
+	// Loop over the Ingredients
+	let ingredient = [];
+	for (let key in ingredients) {
+		ingredient.push({
+			ingredient: key,
+			value: ingredients[key]
+		});
+	}
+	console.log(ingredient);
 	return (
 		<OrderWrapper>
 			<p>Ingredient: Salad</p>
