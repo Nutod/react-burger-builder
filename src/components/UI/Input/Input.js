@@ -43,8 +43,10 @@ export default props => {
 			break;
 		case "select":
 			inputElement = (
-				<Select>
-					<option value="fast">fast</option>
+				<Select value={props.value}>
+					{props.elementconfig.options.map(option => (
+						<option value={option.value}>{option.displayValue}</option>
+					))}
 				</Select>
 			);
 			break;
