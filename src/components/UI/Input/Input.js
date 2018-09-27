@@ -15,7 +15,7 @@ const Label = styled.label`
 
 const Input = styled.input`
 	outline: none;
-	width: 40vw;
+	width: 80%;
 	font-family: inherit;
 	padding: 5px 10px;
 	background-color: #fff;
@@ -29,7 +29,7 @@ const Input = styled.input`
 
 export default props => {
 	let inputElement = null;
-	switch (props.type) {
+	switch (props.inputtype) {
 		case "input":
 			inputElement = <Input {...props} />;
 			break;

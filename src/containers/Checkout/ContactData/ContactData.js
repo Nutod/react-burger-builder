@@ -4,6 +4,7 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { ButtonSuccess } from "../../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "../../../components/UI/Spinner/Spinner";
+import Input from "../../../components/UI/Input/Input";
 
 const ContactDataWrapper = styled.div`
 	margin: 20px auto;
@@ -16,14 +17,6 @@ const ContactDataWrapper = styled.div`
 	@media (min-width: 600px) {
 		width: 500px;
 	}
-`;
-
-const Input = styled.input`
-	display: block;
-	width: 40vw;
-	font-family: inherit;
-	padding: 5px;
-	margin: 5px auto;
 `;
 
 class ContactData extends Component {
@@ -55,10 +48,30 @@ class ContactData extends Component {
 	render() {
 		let orderForm = (
 			<form onSubmit={this.orderHandler}>
-				<Input type="text" name="name" placeholder="Your Name" />
-				<Input type="email" name="email" placeholder="Your Email" />
-				<Input type="text" name="street" placeholder="Your Street" />
-				<Input type="text" name="postalcode" placeholder="Your Postal Code" />
+				<Input
+					inputtype="input"
+					type="text"
+					name="name"
+					placeholder="Your Name"
+				/>
+				<Input
+					inputtype="input"
+					type="email"
+					name="email"
+					placeholder="Your Email"
+				/>
+				<Input
+					inputtype="input"
+					type="text"
+					name="street"
+					placeholder="Your Street"
+				/>
+				<Input
+					inputtype="input"
+					type="text"
+					name="postalcode"
+					placeholder="Your Postal Code"
+				/>
 				<ButtonSuccess>ORDER</ButtonSuccess>
 			</form>
 		);
