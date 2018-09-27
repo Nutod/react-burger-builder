@@ -28,7 +28,11 @@ class ContactData extends Component {
 					type: "text",
 					placeholder: "Your Name"
 				},
-				value: ""
+				value: "",
+				validation: {
+					required: true
+				},
+				valid: false
 			},
 			email: {
 				elementtype: "input",
@@ -36,7 +40,11 @@ class ContactData extends Component {
 					type: "email",
 					placeholder: "Your Email"
 				},
-				value: ""
+				value: "",
+				validation: {
+					required: true
+				},
+				valid: false
 			},
 			street: {
 				elementtype: "input",
@@ -44,7 +52,11 @@ class ContactData extends Component {
 					type: "text",
 					placeholder: "Your Street"
 				},
-				value: ""
+				value: "",
+				validation: {
+					required: true
+				},
+				valid: false
 			},
 			postalCode: {
 				elementtype: "input",
@@ -52,7 +64,11 @@ class ContactData extends Component {
 					type: "text",
 					placeholder: "Your Postal Code"
 				},
-				value: ""
+				value: "",
+				validation: {
+					required: true
+				},
+				valid: true
 			},
 			deliveryMethod: {
 				elementtype: "select",
@@ -94,10 +110,24 @@ class ContactData extends Component {
 			.catch(error => console.log(error));
 	};
 
+	checkValidity = (value, rules) => {
+		let isValid = true;
+
+		if (rules.required) {
+			isValid = value.trim() !== "" && isValid;
+		}
+
+		return isValid;
+	};
+
 	inputChangedHandler = (event, inputIdentifier) => {
 		const orderForm = { ...this.state.orderForm };
 		const formElement = { ...orderForm[inputIdentifier] };
 		formElement.value = event.target.value;
+		formElement.valid = this.checkValidity(
+			formElement.value,
+			formElement.validation
+		);
 
 		orderForm[inputIdentifier] = formElement;
 		this.setState({ orderForm });
@@ -120,6 +150,7 @@ class ContactData extends Component {
 						elementtype={formElement.config.elementtype}
 						elementconfig={formElement.config.elementconfig}
 						value={formElement.config.value}
+						invalid={!formElement.config.valid}
 						changed={event => this.inputChangedHandler(event, formElement.id)}
 					/>
 				))}

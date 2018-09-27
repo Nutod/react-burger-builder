@@ -35,17 +35,32 @@ const Input = styled.input`
 	}
 `;
 
+const InvalidInput = styled(Input)`
+	background-color: salmon;
+	border: 1px solid #aaa;
+`;
+
 export default props => {
 	let inputElement = null;
 	switch (props.elementtype) {
 		case "input":
-			inputElement = (
-				<Input
-					{...props.elementconfig}
-					value={props.value}
-					onChange={props.changed}
-				/>
-			);
+			if (props.invalid) {
+				inputElement = (
+					<InvalidInput
+						{...props.elementconfig}
+						value={props.value}
+						onChange={props.changed}
+					/>
+				);
+			} else {
+				inputElement = (
+					<Input
+						{...props.elementconfig}
+						value={props.value}
+						onChange={props.changed}
+					/>
+				);
+			}
 			break;
 		case "select":
 			inputElement = (
