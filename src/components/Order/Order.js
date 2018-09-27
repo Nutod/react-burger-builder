@@ -32,7 +32,7 @@ export default ({ ingredients, price }) => {
 				</span>
 			))}
 			<p>
-				Price: <strong>{price}</strong>
+				Price: <strong>{Number.parseFloat(price).toFixed(2)}</strong>
 			</p>
 		</OrderWrapper>
 	);
