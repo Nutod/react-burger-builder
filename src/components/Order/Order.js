@@ -19,7 +19,7 @@ export default ({ ingredients, price }) => {
 			value: ingredients[key]
 		});
 	}
-	console.log(ingredient);
+
 	return (
 		<OrderWrapper>
 			<p>Ingredients</p>
