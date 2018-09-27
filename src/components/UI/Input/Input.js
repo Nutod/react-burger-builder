@@ -7,12 +7,24 @@ const InputWrapper = styled.div`
 	padding: 10px;
 `;
 
-const Input = styled.input`
+const Label = styled.label`
 	display: block;
+	font-weight: bold;
+	margin-bottom: 8px;
+`;
+
+const Input = styled.input`
+	outline: none;
 	width: 40vw;
 	font-family: inherit;
-	padding: 5px;
-	margin: 5px auto;
+	padding: 5px 10px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+
+	&:hover {
+		outline: none;
+		background-color: #ccc;
+	}
 `;
 
 export default props => {
@@ -28,7 +40,7 @@ export default props => {
 
 	return (
 		<InputWrapper>
-			<label>{props.label}</label>
+			<Label>{props.label}</Label>
 			{inputElement}
 		</InputWrapper>
 	);
