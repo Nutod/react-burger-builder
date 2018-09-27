@@ -23,40 +23,40 @@ class ContactData extends Component {
 	state = {
 		orderForm: {
 			name: {
-				elementType: "input",
-				elementConfig: {
+				elementtype: "input",
+				elementconfig: {
 					type: "text",
 					placeholder: "Your Name"
 				},
 				value: ""
 			},
 			email: {
-				elementType: "input",
-				elementConfig: {
+				elementtype: "input",
+				elementconfig: {
 					type: "email",
 					placeholder: "Your Email"
 				},
 				value: ""
 			},
 			street: {
-				elementType: "input",
-				elementConfig: {
+				elementtype: "input",
+				elementconfig: {
 					type: "text",
 					placeholder: "Your Street"
 				},
 				value: ""
 			},
 			postalCode: {
-				elementType: "input",
-				elementConfig: {
+				elementtype: "input",
+				elementconfig: {
 					type: "text",
 					placeholder: "Your Postal Code"
 				},
 				value: ""
 			},
 			deliveryMethod: {
-				elementType: "select",
-				elementConfig: {
+				elementtype: "select",
+				elementconfig: {
 					options: [
 						{ value: "fastest", displayValue: "Fastest" },
 						{ value: "cheapest", displayValue: "Cheapest" }
