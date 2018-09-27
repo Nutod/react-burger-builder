@@ -21,11 +21,48 @@ const ContactDataWrapper = styled.div`
 
 class ContactData extends Component {
 	state = {
-		name: "",
-		email: "",
-		address: {
-			street: "",
-			postalCode: ""
+		orderForm: {
+			name: {
+				elementType: "input",
+				elementConfig: {
+					type: "text",
+					placeholder: "Your Name"
+				},
+				value: ""
+			},
+			email: {
+				elementType: "input",
+				elementConfig: {
+					type: "email",
+					placeholder: "Your Email"
+				},
+				value: ""
+			},
+			street: {
+				elementType: "input",
+				elementConfig: {
+					type: "text",
+					placeholder: "Your Street"
+				},
+				value: ""
+			},
+			postalCode: {
+				elementType: "input",
+				elementConfig: {
+					type: "text",
+					placeholder: "Your Postal Code"
+				},
+				value: ""
+			},
+			deliveryMethod: {
+				elementType: "select",
+				elementConfig: {
+					options: [
+						{ value: "fastest", displayValue: "Fastest" },
+						{ value: "cheapest", displayValue: "Cheapest" }
+					]
+				}
+			}
 		},
 		loading: false
 	};
