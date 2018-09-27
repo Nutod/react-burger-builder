@@ -13,9 +13,10 @@ export default props => {
 	let inputElement = null;
 	switch (props.type) {
 		case "input":
-			inputElement = <Input />;
+			inputElement = <Input {...props} />;
 			break;
 		default:
+			inputElement = <p>Input not recognised</p>;
 			break;
 	}
 
