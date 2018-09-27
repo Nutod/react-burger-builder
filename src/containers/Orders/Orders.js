@@ -33,7 +33,9 @@ export default class extends Component {
 		let orders = <Spinner />;
 
 		if (this.state.orders) {
-			orders = this.state.orders.map(order => <Order key={order.id} />);
+			orders = this.state.orders.map(order => (
+				<Order key={order.id} ingredients={order.ingredients} price={order.price} />
+			));
 		}
 		return <div>{orders}</div>;
 	}

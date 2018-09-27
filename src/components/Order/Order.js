@@ -10,8 +10,14 @@ const OrderWrapper = styled.div`
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 `;
 
-export default () => (
-	<OrderWrapper>
-		<p>Ingredient: Salad</p>
-	</OrderWrapper>
-);
+export default ({ ingredients, price }) => {
+	console.log(ingredients);
+	return (
+		<OrderWrapper>
+			<p>Ingredient: Salad</p>
+			<p>
+				Price: <strong>{price}</strong>
+			</p>
+		</OrderWrapper>
+	);
+};
