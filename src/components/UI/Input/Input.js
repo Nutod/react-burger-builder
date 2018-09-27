@@ -29,9 +29,9 @@ const Input = styled.input`
 
 export default props => {
 	let inputElement = null;
-	switch (props.inputtype) {
+	switch (props.elementtype) {
 		case "input":
-			inputElement = <Input {...props} />;
+			inputElement = <Input {...props.elementconfig} value={props.value} />;
 			break;
 		default:
 			inputElement = <p>Input not recognised</p>;
