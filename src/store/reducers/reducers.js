@@ -25,7 +25,8 @@ export default (state = initialState, action) => {
 				ingredients: {
 					...state.ingredients,
 					[action.ingredientName]: state.ingredients[action.ingredientName] + 1
-				}
+				},
+				price: state.price + INGREDIENT_PRICES[action.ingredientName]
 			};
 
 		case actionTypes.REMOVE_INGREDIENT:
@@ -34,7 +35,8 @@ export default (state = initialState, action) => {
 				ingredients: {
 					...state.ingredients,
 					[action.ingredientName]: state.ingredients[action.ingredientName] - 1
-				}
+				},
+				price: state.price - INGREDIENT_PRICES[action.ingredientName]
 			};
 
 		default:

@@ -119,7 +119,7 @@ class BurgerBuilder extends Component {
 						addIngredient={this.props.onIngredientAdded}
 						removeIngredient={this.props.onIngredientRemoved}
 						disabled={disabledInfo}
-						price={this.state.totalPrice}
+						price={this.props.price}
 						purchaseable={this.state.purchaseable}
 						ordered={this.purchaseHandler}
 					/>
@@ -145,7 +145,8 @@ class BurgerBuilder extends Component {
 }
 
 const mapStateToProps = state => ({
-	ings: state.ingredients
+	ings: state.ingredients,
+	price: state.price
 });
 
 const mapDispatchToProps = dispatch => ({
