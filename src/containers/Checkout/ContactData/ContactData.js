@@ -82,9 +82,11 @@ class ContactData extends Component {
 						{ value: "cheapest", displayValue: "Cheapest" }
 					]
 				},
-				value: ""
+				value: "",
+				valid: true
 			}
 		},
+		formIsValid: false,
 		loading: false
 	};
 
@@ -92,26 +94,26 @@ class ContactData extends Component {
 		event.preventDefault();
 		this.setState({ loading: true });
 
-		const formData = {};
-		for (let formElementIdentifier in this.state.orderForm) {
-			formData[formElementIdentifier] = this.state.orderForm[
-				formElementIdentifier
-			];
-		}
+		// const formData = {};
+		// for (let formElementIdentifier in this.state.orderForm) {
+		// 	formData[formElementIdentifier] = this.state.orderForm[
+		// 		formElementIdentifier
+		// 	];
+		// }
 
-		const order = {
-			ingredients: this.props.ingredients,
-			price: this.props.price,
-			orderData: formData
-		};
+		// const order = {
+		// 	ingredients: this.props.ingredients,
+		// 	price: this.props.price,
+		// 	orderData: formData
+		// };
 
-		axios
-			.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
-			.then(response => {
-				this.setState({ loading: false });
-				this.props.history.push("/");
-			})
-			.catch(error => console.log(error));
+		// axios
+		// 	.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
+		// 	.then(response => {
+		// 		this.setState({ loading: false });
+		// 		this.props.history.push("/");
+		// 	})
+		// 	.catch(error => console.log(error));
 	};
 
 	checkValidity = (value, rules) => {
@@ -133,9 +135,14 @@ class ContactData extends Component {
 			formElement.validation
 		);
 		formElement.touched = true;
-
 		orderForm[inputIdentifier] = formElement;
-		this.setState({ orderForm });
+
+		// Switched Logic
+		let formIsValid = true;
+		for (let inputIdentifiers in orderForm) {
+			formIsValid = orderForm[inputIdentifiers].valid && formIsValid;
+		}
+		this.setState({ orderForm, formIsValid });
 	};
 
 	render() {
@@ -161,7 +168,7 @@ class ContactData extends Component {
 						changed={event => this.inputChangedHandler(event, formElement.id)}
 					/>
 				))}
-				<ButtonSuccess>ORDER</ButtonSuccess>
+				<ButtonSuccess disabled={!this.state.formIsValid}>ORDER</ButtonSuccess>
 			</form>
 		);
 
