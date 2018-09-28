@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 import Burger from "../Burger/Burger";
 import BuildControls from "../Burger/BuilControls/BuildControls";
@@ -24,13 +25,15 @@ class BurgerBuilder extends Component {
 	};
 
 	componentDidMount = () => {
-		axios
-			.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
-			.then(response => {
-				this.setState({ ingredients: response.data });
-				console.log(response.data);
-			})
-			.catch(error => console.log(error));
+		// axios
+		// 	.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
+		// 	.then(response => {
+		// 		this.setState({ ingredients: response.data });
+		// 		console.log(response.data);
+		// 	})
+		// 	.catch(error => console.log(error));
+
+		console.log(this.props);
 	};
 
 	updatePurchaseState = ingredients => {
@@ -140,4 +143,13 @@ class BurgerBuilder extends Component {
 	}
 }
 
-export default withError(BurgerBuilder, axios);
+const mapStateToProps = state => ({
+	ings: state.ingredients
+});
+
+const mapDispatchToProps = {};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withError(BurgerBuilder, axios));
