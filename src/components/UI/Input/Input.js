@@ -37,7 +37,7 @@ const Input = styled.input`
 
 const InvalidInput = styled(Input)`
 	background-color: salmon;
-	border: 1px solid #aaa;
+	border: 1px solid orangered;
 `;
 
 export default props => {

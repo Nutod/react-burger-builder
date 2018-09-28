@@ -68,7 +68,7 @@ class ContactData extends Component {
 				validation: {
 					required: true
 				},
-				valid: true
+				valid: false
 			},
 			deliveryMethod: {
 				elementtype: "select",
@@ -142,6 +142,7 @@ class ContactData extends Component {
 			});
 		}
 
+		// You could also possibly add a shouldValidate prop to the Input Component
 		let orderForm = (
 			<form onSubmit={this.orderHandler}>
 				{formElementsArray.map(formElement => (
