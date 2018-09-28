@@ -24,8 +24,7 @@ export default (state = initialState, action) => {
 				...state,
 				ingredients: {
 					...state.ingredients,
-					[action.ingredientName]: state.ingredients[action.ingredientName] + 1,
-					price: state.price + INGREDIENT_PRICES[action.ingredientName]
+					[action.ingredientName]: state.ingredients[action.ingredientName] + 1
 				}
 			};
 
@@ -34,8 +33,7 @@ export default (state = initialState, action) => {
 				...state,
 				ingredients: {
 					...state.ingredients,
-					[action.ingredientName]: state.ingredients[action.ingredientName] + 1,
-					price: state.price + INGREDIENT_PRICES[action.ingredientName]
+					[action.ingredientName]: state.ingredients[action.ingredientName] - 1
 				}
 			};
 

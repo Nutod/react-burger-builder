@@ -8,6 +8,7 @@ import Modal from "../UI/Modal/Modal";
 import OrderSummary from "../Burger/OrderSummary/OrderSummary";
 import withError from "../../HOCs/withError/withError";
 import Spinner from "../UI/Spinner/Spinner";
+import * as actionTypes from "../../store/actions/actions";
 
 const INGREDIENT_PRICES = {
 	salad: 1,
@@ -103,20 +104,20 @@ class BurgerBuilder extends Component {
 	};
 
 	render() {
-		const disabledInfo = { ...this.state.ingredients };
+		const disabledInfo = { ...this.props.ings };
 		for (let key in disabledInfo) {
 			disabledInfo[key] = disabledInfo[key] <= 0;
 		}
 
 		let burger = <Spinner />;
 
-		if (this.state.ingredients) {
+		if (this.props.ings) {
 			burger = (
 				<Fragment>
-					<Burger ingredients={this.state.ingredients} />
+					<Burger ingredients={this.props.ings} />
 					<BuildControls
-						addIngredient={this.addIngredientHandler}
-						removeIngredient={this.removeIngredientHandler}
+						addIngredient={this.props.onIngredientAdded}
+						removeIngredient={this.props.onIngredientRemoved}
 						disabled={disabledInfo}
 						price={this.state.totalPrice}
 						purchaseable={this.state.purchaseable}
@@ -128,9 +129,9 @@ class BurgerBuilder extends Component {
 		return (
 			<Fragment>
 				<Modal show={this.state.purchasing} modalClosed={this.purchaseHandler}>
-					{this.state.ingredients ? (
+					{this.props.ings ? (
 						<OrderSummary
-							ingredients={this.state.ingredients}
+							ingredients={this.props.ings}
 							continued={this.purchaseContinueHandler}
 							cancelled={this.purchaseCancelHandler}
 							price={this.state.totalPrice}
@@ -147,7 +148,12 @@ const mapStateToProps = state => ({
 	ings: state.ingredients
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => ({
+	onIngredientAdded: ingredientName =>
+		dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName }),
+	onIngredientRemoved: ingredientName =>
+		dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName })
+});
 
 export default connect(
 	mapStateToProps,
