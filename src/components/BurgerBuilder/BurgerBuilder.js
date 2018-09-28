@@ -70,21 +70,23 @@ class BurgerBuilder extends Component {
 	};
 
 	purchaseContinueHandler = () => {
-		let queryParam = [];
+		// let queryParam = [];
 
-		for (let key in this.props.ings) {
-			queryParam.push(
-				encodeURIComponent(key) + "=" + encodeURIComponent(this.props.ings[key])
-			);
-		}
-		queryParam.push(`price=${this.props.price}`);
+		// for (let key in this.props.ings) {
+		// 	queryParam.push(
+		// 		encodeURIComponent(key) + "=" + encodeURIComponent(this.props.ings[key])
+		// 	);
+		// }
+		// queryParam.push(`price=${this.props.price}`);
 
-		const queryString = queryParam.join("&");
+		// const queryString = queryParam.join("&");
 
-		this.props.history.push({
-			pathname: "/checkout",
-			search: "?" + queryString
-		});
+		// this.props.history.push({
+		// 	pathname: "/checkout",
+		// 	search: "?" + queryString
+		// });
+
+		this.props.history.push("/checkout");
 	};
 
 	purchaseCancelHandler = () => {
