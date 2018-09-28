@@ -19,6 +19,11 @@ export const Button = styled.button`
 `;
 export const ButtonSuccess = styled(Button)`
 	color: #5c9210;
+
+	&:disabled {
+		color: #ccc;
+		cursor: not-allowed;
+	}
 `;
 
 export const ButtonDanger = styled(Button)`

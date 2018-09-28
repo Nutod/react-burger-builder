@@ -82,7 +82,8 @@ class ContactData extends Component {
 						{ value: "cheapest", displayValue: "Cheapest" }
 					]
 				},
-				value: "",
+				value: "fastest",
+				validation: {},
 				valid: true
 			}
 		},
@@ -94,26 +95,26 @@ class ContactData extends Component {
 		event.preventDefault();
 		this.setState({ loading: true });
 
-		// const formData = {};
-		// for (let formElementIdentifier in this.state.orderForm) {
-		// 	formData[formElementIdentifier] = this.state.orderForm[
-		// 		formElementIdentifier
-		// 	];
-		// }
+		const formData = {};
+		for (let formElementIdentifier in this.state.orderForm) {
+			formData[formElementIdentifier] = this.state.orderForm[
+				formElementIdentifier
+			];
+		}
 
-		// const order = {
-		// 	ingredients: this.props.ingredients,
-		// 	price: this.props.price,
-		// 	orderData: formData
-		// };
+		const order = {
+			ingredients: this.props.ingredients,
+			price: this.props.price,
+			orderData: formData
+		};
 
-		// axios
-		// 	.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
-		// 	.then(response => {
-		// 		this.setState({ loading: false });
-		// 		this.props.history.push("/");
-		// 	})
-		// 	.catch(error => console.log(error));
+		axios
+			.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
+			.then(response => {
+				this.setState({ loading: false });
+				this.props.history.push("/");
+			})
+			.catch(error => console.log(error));
 	};
 
 	checkValidity = (value, rules) => {
