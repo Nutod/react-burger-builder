@@ -37,13 +37,12 @@ class BurgerBuilder extends Component {
 		console.log(this.props);
 	};
 
-	updatePurchaseState = ingredients => {
-		// Pass the ingredient because of the batching by setState
-		const sum = Object.keys(ingredients)
-			.map(igKey => ingredients[igKey])
+	updatePurchaseState = () => {
+		const sum = Object.keys(this.props.ings)
+			.map(igKey => this.props.ings[igKey])
 			.reduce((acc, value) => acc + value);
 
-		this.setState({ purchaseable: sum > 0 });
+		return sum > 0;
 	};
 
 	addIngredientHandler = type => {
@@ -120,7 +119,7 @@ class BurgerBuilder extends Component {
 						removeIngredient={this.props.onIngredientRemoved}
 						disabled={disabledInfo}
 						price={this.props.price}
-						purchaseable={this.state.purchaseable}
+						purchaseable={this.updatePurchaseState()}
 						ordered={this.purchaseHandler}
 					/>
 				</Fragment>
