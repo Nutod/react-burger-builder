@@ -44,7 +44,7 @@ export default props => {
 	let inputElement = null;
 	switch (props.elementtype) {
 		case "input":
-			if (props.invalid) {
+			if (props.invalid && props.touched) {
 				inputElement = (
 					<InvalidInput
 						{...props.elementconfig}
