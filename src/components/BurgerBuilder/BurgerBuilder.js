@@ -8,7 +8,7 @@ import Modal from "../UI/Modal/Modal";
 import OrderSummary from "../Burger/OrderSummary/OrderSummary";
 import withError from "../../HOCs/withError/withError";
 import Spinner from "../UI/Spinner/Spinner";
-import * as actionTypes from "../../store/actions/actions";
+import * as burgerActions from "../../store/actions/index";
 
 class BurgerBuilder extends Component {
 	state = {
@@ -141,9 +141,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	onIngredientAdded: ingredientName =>
-		dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName }),
+		dispatch(burgerActions.addIngredient(ingredientName)),
 	onIngredientRemoved: ingredientName =>
-		dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName })
+		dispatch(burgerActions.removeIngredient(ingredientName))
 });
 
 export default connect(
