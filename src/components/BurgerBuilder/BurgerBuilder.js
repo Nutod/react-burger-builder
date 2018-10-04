@@ -8,7 +8,12 @@ import Modal from "../UI/Modal/Modal";
 import OrderSummary from "../Burger/OrderSummary/OrderSummary";
 import withError from "../../HOCs/withError/withError";
 import Spinner from "../UI/Spinner/Spinner";
-import { addIngredient, removeIngredient } from "./BurgerActions";
+import {
+	addIngredient,
+	removeIngredient,
+	fetchIngredientsSuccess,
+	fetchIngredientsFailed
+} from "./BurgerActions";
 
 class BurgerBuilder extends Component {
 	state = {
@@ -18,6 +23,16 @@ class BurgerBuilder extends Component {
 
 	componentDidMount = () => {
 		console.log(this.props);
+		axios
+			.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
+			.then(response => {
+				console.log(response.data);
+				this.props.onFetchIngredientsSuccess(response.data);
+			})
+			.catch(error => {
+				console.log(error);
+				this.props.onFetchIngredientsFailed();
+			});
 	};
 
 	updatePurchaseState = () => {
@@ -135,7 +150,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	onIngredientAdded: addIngredient(dispatch),
-	onIngredientRemoved: removeIngredient(dispatch)
+	onIngredientRemoved: removeIngredient(dispatch),
+	onFetchIngredientsSuccess: fetchIngredientsSuccess(dispatch),
+	onFetchIngredientsFailed: fetchIngredientsFailed(dispatch)
 });
 
 export default connect(

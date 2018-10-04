@@ -1,5 +1,4 @@
 import * as actionTypes from "../../store/actions/actionTypes";
-import axios from "axios";
 
 export const addIngredient = dispatch => {
 	return ingredientName =>
@@ -9,24 +8,13 @@ export const addIngredient = dispatch => {
 export const removeIngredient = dispatch => ingredientName =>
 	dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName });
 
-export const fetchIngredientsSuccess = ingredients => ({
-	type: actionTypes.SET_INGREDIENTS,
-	ingredients
-});
+export const fetchIngredientsSuccess = dispatch => ingredients =>
+	dispatch({
+		type: actionTypes.FETCH_INGREDIENTS_SUCCESS,
+		ingredients
+	});
 
-export const fetchIngredientsFailed = () => ({
-	type: actionTypes.FETCH_INGREDIENTS_FAILED
-});
-
-export const fetchIngredients = () => dispatch => {
-	axios
-		.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
-		.then(response => {
-			console.log(response.data);
-			dispatch(fetchIngredientsSuccess(response.data));
-		})
-		.catch(error => {
-			console.log(error);
-			dispatch(fetchIngredientsFailed());
-		});
-};
+export const fetchIngredientsFailed = dispatch => ingredients =>
+	dispatch({
+		type: actionTypes.FETCH_INGREDIENTS_FAILED
+	});
