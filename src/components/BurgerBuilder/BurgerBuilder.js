@@ -12,13 +12,6 @@ import { addIngredient, removeIngredient } from "./BurgerActions";
 
 class BurgerBuilder extends Component {
 	state = {
-		ingredients: {
-			bacon: 0,
-			cheese: 0,
-			meat: 0,
-			salad: 0
-		},
-		totalPrice: 5,
 		purchaseable: false,
 		purchasing: false
 	};
