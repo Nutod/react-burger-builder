@@ -4,7 +4,7 @@ const initialState = {
 	orders: []
 };
 
-export const orderReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.PURCHASE_BURGER_SUCCESS:
 			const newOrder = {
