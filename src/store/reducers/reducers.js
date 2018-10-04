@@ -36,6 +36,24 @@ export default (state = initialState, action) => {
 				price: state.price - INGREDIENT_PRICES[action.ingredientName]
 			};
 
+		case actionTypes.FETCH_INGREDIENTS_START:
+			return {
+				...state,
+				loading: true
+			};
+
+		case actionTypes.FETCH_INGREDIENTS_SUCCESS:
+			return {
+				...state,
+				ingredients: action.ingredients
+			};
+
+		case actionTypes.FETCH_INGREDIENTS_FAILED:
+			return {
+				...state,
+				error: true
+			};
+
 		default:
 			return state;
 	}
