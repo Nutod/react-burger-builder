@@ -120,7 +120,7 @@ class ContactData extends Component {
 			.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
 			.then(response => {
 				this.setState({ loading: false });
-				this.props.onPurchaseSuccess(response.data, order);
+				this.props.onPurchaseSuccess(response.data.name, order);
 				this.props.history.push("/");
 			})
 			.catch(error => {
