@@ -21,6 +21,15 @@ export default (state = initialState, action) => {
 				...state
 			};
 
+		case actionTypes.FETCH_ORDERS_SUCCESS:
+			return {
+				...state,
+				orders: action.orders
+			};
+		case actionTypes.FETCH_ORDERS_FAIL:
+			return {
+				...state
+			};
 		default:
 			return state;
 	}

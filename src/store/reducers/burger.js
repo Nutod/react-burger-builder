@@ -38,14 +38,14 @@ export default (state = initialState, action) => {
 
 		case actionTypes.FETCH_INGREDIENTS_START:
 			return {
-				...state,
-				loading: true
+				...state
 			};
 
 		case actionTypes.FETCH_INGREDIENTS_SUCCESS:
 			return {
 				...state,
 				ingredients: { ...action.ingredients },
+				price: 5,
 				error: false
 			};
 
