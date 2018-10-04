@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 import { withRouter } from "react-router-dom";
 import { ButtonSuccess } from "../../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
-import { purchaseBurgerSuccess, purchaseBurgerFailed } from "../../Orders/OrderActions";
+import {
+	purchaseBurgerSuccess,
+	purchaseBurgerFailed
+} from "../../Orders/OrderActions";
 
 const ContactDataWrapper = styled.div`
 	margin: 20px auto;
@@ -115,9 +118,13 @@ class ContactData extends Component {
 			.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
 			.then(response => {
 				this.setState({ loading: false });
+				this.props.onPurchaseSuccess(response.data, order);
 				this.props.history.push("/");
 			})
-			.catch(error => console.log(error));
+			.catch(error => {
+				this.props.onPurchaseFailed(error);
+				console.log(error);
+			});
 	};
 
 	checkValidity = (value, rules) => {
@@ -194,5 +201,7 @@ const mapDispatchToProps = dispatch => ({
 	onPurchaseFailed: purchaseBurgerFailed(dispatch)
 });
 
-
-export default connect(null, mapDispatchToProps)(withRouter(ContactData));
+export default connect(
+	null,
+	mapDispatchToProps
+)(withRouter(ContactData));
