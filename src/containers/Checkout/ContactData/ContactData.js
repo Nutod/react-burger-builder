@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import {connect} from 'react-redux';
+
 import { withRouter } from "react-router-dom";
 import { ButtonSuccess } from "../../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
+import { purchaseBurgerSuccess, purchaseBurgerFailed } from "../../Orders/OrderActions";
 
 const ContactDataWrapper = styled.div`
 	margin: 20px auto;
@@ -186,4 +189,10 @@ class ContactData extends Component {
 	}
 }
 
-export default withRouter(ContactData);
+const mapDispatchToProps = dispatch => ({
+	onPurchaseSuccess: purchaseBurgerSuccess(dispatch),
+	onPurchaseFailed: purchaseBurgerFailed(dispatch)
+});
+
+
+export default connect(null, mapDispatchToProps)(withRouter(ContactData));
