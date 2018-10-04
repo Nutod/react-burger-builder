@@ -24,7 +24,7 @@ class BurgerBuilder extends Component {
 	componentDidMount = () => {
 		console.log(this.props);
 		axios
-			.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
+			.get("https://burger-react-d3b90.firebaseio.com/ingredients.son")
 			.then(response => {
 				console.log(response.data);
 				this.props.onFetchIngredientsSuccess(response.data);
@@ -108,6 +108,12 @@ class BurgerBuilder extends Component {
 
 		let burger = <Spinner />;
 
+		if (this.props.error) {
+			burger = (
+				<p style={{ textAlign: "center" }}>Ingredients cannot be loaded</p>
+			);
+		}
+
 		if (this.props.ings) {
 			burger = (
 				<Fragment>
@@ -144,8 +150,7 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => ({
 	ings: state.ingredients,
 	price: state.price,
-	error: state.error,
-	loading: state.loading
+	error: state.error
 });
 
 const mapDispatchToProps = dispatch => ({
