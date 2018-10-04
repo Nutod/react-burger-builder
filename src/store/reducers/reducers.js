@@ -8,13 +8,10 @@ const INGREDIENT_PRICES = {
 };
 
 const initialState = {
-	ingredients: {
-		bacon: 0,
-		cheese: 0,
-		meat: 0,
-		salad: 0
-	},
-	price: 5
+	ingredients: null,
+	price: 5,
+	loading: false,
+	error: false
 };
 
 export default (state = initialState, action) => {
