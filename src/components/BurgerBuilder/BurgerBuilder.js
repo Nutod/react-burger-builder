@@ -8,17 +8,23 @@ import Modal from "../UI/Modal/Modal";
 import OrderSummary from "../Burger/OrderSummary/OrderSummary";
 import withError from "../../HOCs/withError/withError";
 import Spinner from "../UI/Spinner/Spinner";
-import * as burgerActions from "../../store/actions/index";
+import { addIngredient, removeIngredient } from "./BurgerActions";
 
 class BurgerBuilder extends Component {
 	state = {
-		ingredients: null,
+		ingredients: {
+			bacon: 0,
+			cheese: 0,
+			meat: 0,
+			salad: 0
+		},
 		totalPrice: 5,
 		purchaseable: false,
 		purchasing: false
 	};
 
 	componentDidMount = () => {
+		console.log(this.props);
 		// axios
 		// 	.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
 		// 	.then(response => {
@@ -37,15 +43,15 @@ class BurgerBuilder extends Component {
 	};
 
 	// addIngredientHandler = type => {
-	// 	const ingredients = { ...this.state.ingredients };
-	// 	ingredients[type]++;
+	// const ingredients = { ...this.state.ingredients };
+	// ingredients[type]++;
 
-	// 	const price = INGREDIENT_PRICES[type];
-	// 	const oldPrice = this.state.totalPrice;
-	// 	const newPrice = oldPrice + price;
+	// const price = INGREDIENT_PRICES[type];
+	// const oldPrice = this.state.totalPrice;
+	// const newPrice = oldPrice + price;
 
-	// 	this.setState({ ingredients, totalPrice: newPrice });
-	// 	this.updatePurchaseState(ingredients);
+	// this.setState({ ingredients, totalPrice: newPrice });
+	// this.updatePurchaseState(ingredients);
 	// };
 
 	// removeIngredientHandler = type => {
@@ -140,10 +146,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	onIngredientAdded: ingredientName =>
-		dispatch(burgerActions.addIngredient(ingredientName)),
-	onIngredientRemoved: ingredientName =>
-		dispatch(burgerActions.removeIngredient(ingredientName))
+	onIngredientAdded: addIngredient(dispatch),
+	onIngredientRemoved: removeIngredient(dispatch)
 });
 
 export default connect(
