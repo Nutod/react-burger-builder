@@ -105,7 +105,7 @@ class ContactData extends Component {
 		for (let formElementIdentifier in this.state.orderForm) {
 			formData[formElementIdentifier] = this.state.orderForm[
 				formElementIdentifier
-			];
+			].value;
 		}
 
 		const order = {
@@ -113,6 +113,8 @@ class ContactData extends Component {
 			price: this.props.price,
 			orderData: formData
 		};
+
+		console.log(order);
 
 		axios
 			.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
