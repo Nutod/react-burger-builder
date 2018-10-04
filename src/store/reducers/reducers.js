@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
 		case actionTypes.FETCH_INGREDIENTS_SUCCESS:
 			return {
 				...state,
-				ingredients: action.ingredients,
+				ingredients: { ...action.ingredients },
 				error: false
 			};
 
