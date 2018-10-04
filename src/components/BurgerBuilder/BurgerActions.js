@@ -9,9 +9,13 @@ export const addIngredient = dispatch => {
 export const removeIngredient = dispatch => ingredientName =>
 	dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName });
 
-export const setIngredients = ingredients => ({
+export const fetchIngredientsSuccess = ingredients => ({
 	type: actionTypes.SET_INGREDIENTS,
 	ingredients
+});
+
+export const fetchIngredientsFailed = () => ({
+	type: actionTypes.FETCH_INGREDIENTS_FAILED
 });
 
 export const fetchIngredients = () => dispatch => {
@@ -19,7 +23,10 @@ export const fetchIngredients = () => dispatch => {
 		.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
 		.then(response => {
 			console.log(response.data);
-			dispatch(setIngredients(response.data));
+			dispatch(fetchIngredientsSuccess(response.data));
 		})
-		.catch(error => console.log(error));
+		.catch(error => {
+			console.log(error);
+			dispatch(fetchIngredientsFailed());
+		});
 };
