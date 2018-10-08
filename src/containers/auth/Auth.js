@@ -89,12 +89,16 @@ class Auth extends Component {
 			password: this.state.controls.password.value,
 			returnSecureToken: true
 		};
-		// Reach out to the Web from here
+
+		let url =
+			"https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCyt9qpKlm5bUuUlOs0gZ123IE0CIe9ans";
+
+		if (this.state.isSignedUp) {
+			url =
+				"https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCyt9qpKlm5bUuUlOs0gZ123IE0CIe9ans";
+		}
 		axios
-			.post(
-				"https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCyt9qpKlm5bUuUlOs0gZ123IE0CIe9ans",
-				authData
-			)
+			.post(url, authData)
 			.then(response => {
 				console.log(response.data);
 				this.props.onAuthSuccess(response.data);
