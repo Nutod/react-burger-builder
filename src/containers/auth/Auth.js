@@ -4,7 +4,10 @@ import { connect } from "react-redux";
 import axios from "axios";
 
 import Input from "../../components/UI/Input/Input";
-import { ButtonSuccess } from "../../components/Burger/OrderSummary/OrderSummary";
+import {
+	ButtonSuccess,
+	ButtonDanger
+} from "../../components/Burger/OrderSummary/OrderSummary";
 import { authStart, authSuccess, authFail } from "./AuthActions";
 
 const AuthWrapper = styled.div`
@@ -51,7 +54,8 @@ class Auth extends Component {
 				valid: false,
 				touched: false
 			}
-		}
+		},
+		isSignedUp: false
 	};
 
 	checkValidity = (value, rules) => {
@@ -81,8 +85,8 @@ class Auth extends Component {
 		event.preventDefault();
 
 		const authData = {
-			email: this.state.controls.email,
-			password: this.state.controls.password,
+			email: this.state.controls.email.value,
+			password: this.state.controls.password.value,
 			returnSecureToken: true
 		};
 		// Reach out to the Web from here
@@ -118,6 +122,10 @@ class Auth extends Component {
 		this.setState({ controls });
 	};
 
+	swithAuthMode = () => {
+		this.setState(prevState => ({ isSignedUp: !prevState.isSignedUp }));
+	};
+
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.controls) {
@@ -142,8 +150,13 @@ class Auth extends Component {
 							changed={event => this.inputChangedHandler(event, formElement.id)}
 						/>
 					))}
-					<ButtonSuccess>ORDER</ButtonSuccess>
+					<ButtonSuccess>
+						{this.state.isSignedUp ? "Sign In" : "Sign Up"}
+					</ButtonSuccess>
 				</form>
+				<ButtonDanger onClick={this.swithAuthMode}>
+					Swittch to {!this.state.isSignedUp ? "Sign In" : "Sign Up"}
+				</ButtonDanger>
 			</AuthWrapper>
 		);
 	}
