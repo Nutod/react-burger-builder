@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -9,6 +9,7 @@ import {
 	ButtonDanger
 } from "../../components/Burger/OrderSummary/OrderSummary";
 import { authStart, authSuccess, authFail } from "./AuthActions";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 const AuthWrapper = styled.div`
 	margin: 20px auto;
@@ -83,6 +84,7 @@ class Auth extends Component {
 
 	orderHandler = event => {
 		event.preventDefault();
+		this.props.onAuthStart();
 
 		const authData = {
 			email: this.state.controls.email.value,
@@ -91,17 +93,18 @@ class Auth extends Component {
 		};
 
 		let url =
-			"https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCyt9qpKlm5bUuUlOs0gZ123IE0CIe9ans";
+			"https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCyt9qpKlm5bUuUlOs0gZ123IE0CIe9ans";
 
 		if (this.state.isSignedUp) {
 			url =
-				"https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCyt9qpKlm5bUuUlOs0gZ123IE0CIe9ans";
+				"https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCyt9qpKlm5bUuUlOs0gZ123IE0CIe9ans";
 		}
+
 		axios
 			.post(url, authData)
 			.then(response => {
 				console.log(response.data);
-				this.props.onAuthSuccess(response.data);
+				this.props.onAuthSuccess(response.data.idToken, response.data.localId);
 			})
 			.catch(error => {
 				console.log(error);
@@ -139,9 +142,9 @@ class Auth extends Component {
 			});
 		}
 
-		return (
-			<AuthWrapper>
-				<h4>Sign In</h4>
+		let form = (
+			<Fragment>
+				<h4>SIGN IN</h4>
 				<form onSubmit={this.orderHandler}>
 					{formElementsArray.map(formElement => (
 						<Input
@@ -154,17 +157,25 @@ class Auth extends Component {
 							changed={event => this.inputChangedHandler(event, formElement.id)}
 						/>
 					))}
-					<ButtonSuccess>
-						{this.state.isSignedUp ? "Sign In" : "Sign Up"}
-					</ButtonSuccess>
+					<ButtonSuccess>SUBMIT</ButtonSuccess>
 				</form>
 				<ButtonDanger onClick={this.swithAuthMode}>
-					Swittch to {!this.state.isSignedUp ? "Sign In" : "Sign Up"}
+					SWITCH TO {!this.state.isSignedUp ? "SIGN UP" : "SIGN IN"}
 				</ButtonDanger>
-			</AuthWrapper>
+			</Fragment>
 		);
+
+		if (this.props.loading) {
+			form = <Spinner />;
+		}
+
+		return <AuthWrapper>{form}</AuthWrapper>;
 	}
 }
+
+const mapStateToProps = state => ({
+	loading: state.auth.loading
+});
 
 const mapDispatchToProps = dispatch => ({
 	onAuthStart: authStart(dispatch),
@@ -173,6 +184,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(Auth);
