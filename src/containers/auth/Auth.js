@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import axios from "axios";
+
 import Input from "../../components/UI/Input/Input";
 import { ButtonSuccess } from "../../components/Burger/OrderSummary/OrderSummary";
+import { authStart, authSuccess, authFail } from "./AuthActions";
 
 const AuthWrapper = styled.div`
 	margin: 20px auto;
@@ -73,8 +77,28 @@ class Auth extends Component {
 		return isValid;
 	};
 
-	orderHandler = () => {
-		// Do something Here
+	orderHandler = event => {
+		event.preventDefault();
+
+		const authData = {
+			email: this.state.controls.email,
+			password: this.state.controls.password,
+			returnSecureToken: true
+		};
+		// Reach out to the Web from here
+		axios
+			.post(
+				"https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCyt9qpKlm5bUuUlOs0gZ123IE0CIe9ans",
+				authData
+			)
+			.then(response => {
+				console.log(response.data);
+				this.props.onAuthSuccess(response.data);
+			})
+			.catch(error => {
+				console.log(error);
+				this.props.onAuthFail(error);
+			});
 	};
 
 	inputChangedHandler = (event, controlName) => {
@@ -125,4 +149,13 @@ class Auth extends Component {
 	}
 }
 
-export default Auth;
+const mapDispatchToProps = dispatch => ({
+	onAuthStart: authStart(dispatch),
+	onAuthSuccess: authSuccess(dispatch),
+	onAuthFail: authFail(dispatch)
+});
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(Auth);

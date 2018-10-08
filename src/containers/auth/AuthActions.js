@@ -6,4 +6,7 @@ export const authSuccess = dispatch => authData => ({
 	type: actionTypes.AUTH_SUCCESS,
 	authData
 });
-export const authFail = dispatch => () => ({ type: actionTypes.AUTH_FAIL });
+export const authFail = dispatch => error => ({
+	type: actionTypes.AUTH_FAIL,
+	error
+});
