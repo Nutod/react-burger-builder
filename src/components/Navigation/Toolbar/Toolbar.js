@@ -59,12 +59,12 @@ const Menu = styled.div`
 	}
 `;
 
-export default ({ openSidebar }) => (
+export default ({ openSidebar, authenticated }) => (
 	<Header>
 		<Menu onClick={openSidebar} />
 		<Logo logoHeight="100%" />
 		<NavWrapper>
-			<NavigationItems />
+			<NavigationItems isAuth={authenticated} />
 		</NavWrapper>
 	</Header>
 );

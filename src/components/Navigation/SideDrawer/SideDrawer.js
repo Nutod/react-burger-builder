@@ -26,12 +26,12 @@ const SideDrawerClose = styled(SideDrawerWrapper)`
 	transform: translateX(-100%);
 `;
 
-export default ({ open, closed }) => {
+export default ({ open, closed, authenticated }) => {
 	let sideDrawer = (
 		<SideDrawerWrapper>
 			<Logo logoHeight="11%" />
 			<nav style={{ marginTop: "-50vh", marginLeft: "10px" }}>
-				<NavigationItems />
+				<NavigationItems isAuth={authenticated} />
 			</nav>
 		</SideDrawerWrapper>
 	);

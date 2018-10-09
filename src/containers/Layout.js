@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import BurgerBuilder from "../components/BurgerBuilder/BurgerBuilder";
 import Toolbar from "../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Checkout from "./Checkout/Checkout";
@@ -53,4 +53,4 @@ const mapStateToProps = state => ({
 	isAuthenticated: state.auth.token !== null
 });
 
-export default connect(mapStateToProps)(Layout);
+export default withRouter(connect(mapStateToProps)(Layout));
