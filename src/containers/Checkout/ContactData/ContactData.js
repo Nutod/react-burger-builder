@@ -117,7 +117,7 @@ class ContactData extends Component {
 		console.log(order);
 
 		axios
-			.post("https://burger-react-d3b90.firebaseio.com/orders.json", order)
+			.post(`https://burger-react-d3b90.firebaseio.com/orders.json?auth=${this.props.token}`, order)
 			.then(response => {
 				this.setState({ loading: false });
 				this.props.onPurchaseSuccess(response.data.name, order);
@@ -220,12 +220,16 @@ class ContactData extends Component {
 	}
 }
 
+const mapStateToProps = state => ({
+	token: state.auth.token
+})
+
 const mapDispatchToProps = dispatch => ({
 	onPurchaseSuccess: purchaseBurgerSuccess(dispatch),
 	onPurchaseFailed: purchaseBurgerFailed(dispatch)
 });
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(withRouter(ContactData));
