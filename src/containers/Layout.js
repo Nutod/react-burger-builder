@@ -3,14 +3,15 @@ import BurgerBuilder from "../components/BurgerBuilder/BurgerBuilder";
 import Toolbar from "../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
 import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+
 import Checkout from "./Checkout/Checkout";
 import Orders from "./Orders/Orders";
 import Auth from "./auth/Auth";
 
 // Running yarn eject means you still have to run npm install afterwards as the entire app breaks as of React 16.5
 
-// Main tag added for semantic purposes
-export default class Layout extends Component {
+class Layout extends Component {
 	state = {
 		showSideDrawer: false
 	};
@@ -29,8 +30,12 @@ export default class Layout extends Component {
 				<SideDrawer
 					open={this.state.showSideDrawer}
 					closed={this.sideDrawerCloseHandler}
+					authenticated={this.props.isAuthenticated}
 				/>
-				<Toolbar openSidebar={this.sideDrawerOpenHandler} />
+				<Toolbar
+					openSidebar={this.sideDrawerOpenHandler}
+					authenticated={this.props.isAuthenticated}
+				/>
 				<main style={{ marginTop: "7rem" }}>
 					<Switch>
 						<Route path="/orders" component={Orders} />
@@ -43,3 +48,9 @@ export default class Layout extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.token !== null
+});
+
+export default connect(mapStateToProps)(Layout);
