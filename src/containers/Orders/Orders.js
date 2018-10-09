@@ -12,7 +12,11 @@ class Orders extends Component {
 
 	componentDidMount = () => {
 		axios
-			.get("https://burger-react-d3b90.firebaseio.com/orders.json")
+			.get(
+				`https://burger-react-d3b90.firebaseio.com/orders.json?auth=${
+					this.props.token
+				}`
+			)
 			.then(response => {
 				this.setState({ loading: true });
 				let fetchedOrders = [];
@@ -23,7 +27,7 @@ class Orders extends Component {
 						id: key
 					});
 				}
-				console.log(fetchedOrders);
+
 				this.setState({ loading: false });
 				this.props.onFetchOrdersSuccess(fetchedOrders);
 			})
@@ -52,7 +56,8 @@ class Orders extends Component {
 }
 
 const mapStateToProps = state => ({
-	orders: state.order.orders
+	orders: state.order.orders,
+	token: state.auth.token
 });
 
 const mapDispatchToProps = dispatch => ({
