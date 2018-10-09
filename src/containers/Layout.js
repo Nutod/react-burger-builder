@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import Checkout from "./Checkout/Checkout";
 import Orders from "./Orders/Orders";
 import Auth from "./auth/Auth";
+import Logout from "./auth/Logout/Logout";
 
 // Running yarn eject means you still have to run npm install afterwards as the entire app breaks as of React 16.5
 
@@ -41,6 +42,7 @@ class Layout extends Component {
 						<Route path="/orders" component={Orders} />
 						<Route path="/checkout" component={Checkout} />
 						<Route path="/auth" component={Auth} />
+						<Route path="/logout" component={Logout} />
 						<Route path="/" exact component={BurgerBuilder} />
 					</Switch>
 				</main>
