@@ -14,3 +14,5 @@ export const authFail = dispatch => error =>
 		type: actionTypes.AUTH_FAIL,
 		error
 	});
+export const logout = dispatch => () =>
+	dispatch({ type: actionTypes.AUTH_LOGOUT });

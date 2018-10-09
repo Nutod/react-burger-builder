@@ -8,7 +8,7 @@ import {
 	ButtonSuccess,
 	ButtonDanger
 } from "../../components/Burger/OrderSummary/OrderSummary";
-import { authStart, authSuccess, authFail } from "./AuthActions";
+import { authStart, authSuccess, authFail, logout } from "./AuthActions";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 const AuthWrapper = styled.div`
@@ -82,6 +82,12 @@ class Auth extends Component {
 		return isValid;
 	};
 
+	checkExpirationTime = expirationTime => {
+		setTimeout(() => {
+			this.props.onLogout();
+		}, expirationTime * 1000);
+	};
+
 	orderHandler = event => {
 		event.preventDefault();
 		this.props.onAuthStart();
@@ -105,10 +111,11 @@ class Auth extends Component {
 			.then(response => {
 				console.log(response.data);
 				this.props.onAuthSuccess(response.data.idToken, response.data.localId);
+				this.checkExpirationTime(response.data.expiresIn);
 			})
 			.catch(error => {
 				console.log(error);
-				this.props.onAuthFail(error);
+				this.props.onAuthFail(error.response.data.error.message);
 			});
 	};
 
@@ -142,9 +149,16 @@ class Auth extends Component {
 			});
 		}
 
+		let errorMessage = null;
+
+		if (this.props.error) {
+			errorMessage = <p>{this.props.error.message}</p>;
+		}
+
 		let form = (
 			<Fragment>
 				<h4>SIGN IN</h4>
+				{errorMessage}
 				<form onSubmit={this.orderHandler}>
 					{formElementsArray.map(formElement => (
 						<Input
@@ -174,13 +188,15 @@ class Auth extends Component {
 }
 
 const mapStateToProps = state => ({
-	loading: state.auth.loading
+	loading: state.auth.loading,
+	error: state.auth.error
 });
 
 const mapDispatchToProps = dispatch => ({
 	onAuthStart: authStart(dispatch),
 	onAuthSuccess: authSuccess(dispatch),
-	onAuthFail: authFail(dispatch)
+	onAuthFail: authFail(dispatch),
+	onLogout: logout(dispatch)
 });
 
 export default connect(
