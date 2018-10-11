@@ -109,13 +109,11 @@ class Auth extends Component {
 		axios
 			.post(url, authData)
 			.then(response => {
-				console.log(response.data);
 				this.authSuccess(response);
 				this.checkExpirationTime(response.data.expiresIn);
 				this.redirectUser();
 			})
 			.catch(error => {
-				console.log(error);
 				this.props.onAuthFail(error.response.data.error.message);
 			});
 	};
