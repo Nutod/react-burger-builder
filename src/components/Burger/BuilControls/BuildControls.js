@@ -86,7 +86,8 @@ export default ({
 	disabled,
 	price,
 	purchaseable,
-	ordered
+	ordered,
+	isAuth
 }) => {
 	return (
 		<BuildControlsWrapper>
@@ -102,9 +103,15 @@ export default ({
 					disable={disabled[control.type]}
 				/>
 			))}
-			<OrderButton style={{marginTop: '15px'}} disabled={!purchaseable} onClick={ordered}>
-				Order Now
-				{/* <span role="img">🚀</span> */}
+			<OrderButton
+				style={{ marginTop: "15px" }}
+				disabled={!purchaseable}
+				onClick={ordered}
+			>
+				{isAuth ? "Order Now" : "Sign Up and Order"}{" "}
+				<span role="img" aria-label="Order">
+					🚀
+				</span>
 			</OrderButton>
 		</BuildControlsWrapper>
 	);
