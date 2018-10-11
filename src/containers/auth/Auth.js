@@ -112,7 +112,11 @@ class Auth extends Component {
 				console.log(response.data);
 				this.props.onAuthSuccess(response.data.idToken, response.data.localId);
 				this.checkExpirationTime(response.data.expiresIn);
-				this.props.history.push("/");
+				if (this.props.building) {
+					this.props.history.push("/checkout");
+				} else {
+					this.props.history.push("/");
+				}
 			})
 			.catch(error => {
 				console.log(error);
@@ -190,7 +194,8 @@ class Auth extends Component {
 
 const mapStateToProps = state => ({
 	loading: state.auth.loading,
-	error: state.auth.error
+	error: state.auth.error,
+	building: state.burger.building
 });
 
 const mapDispatchToProps = dispatch => ({
