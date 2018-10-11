@@ -112,6 +112,7 @@ class Auth extends Component {
 				console.log(response.data);
 				this.props.onAuthSuccess(response.data.idToken, response.data.localId);
 				this.checkExpirationTime(response.data.expiresIn);
+				this.props.history.push("/");
 			})
 			.catch(error => {
 				console.log(error);

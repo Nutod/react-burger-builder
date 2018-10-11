@@ -19,7 +19,7 @@ const NavigationList = styled.ul`
 export default ({ isAuth }) => (
 	<NavigationList>
 		<NavigationItem link="/" exact displayText="Burger Builder" />
-		<NavigationItem link="/orders" displayText="Orders" />
+		{isAuth ? <NavigationItem link="/orders" displayText="Orders" /> : null}
 		{!isAuth ? (
 			<NavigationItem link="/auth" displayText="Authenticate" />
 		) : (
