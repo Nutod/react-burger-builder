@@ -110,13 +110,9 @@ class Auth extends Component {
 			.post(url, authData)
 			.then(response => {
 				console.log(response.data);
-				this.props.onAuthSuccess(response.data.idToken, response.data.localId);
+				this.authSuccess(response);
 				this.checkExpirationTime(response.data.expiresIn);
-				if (this.props.building) {
-					this.props.history.push("/checkout");
-				} else {
-					this.props.history.push("/");
-				}
+				this.redirectUser();
 			})
 			.catch(error => {
 				console.log(error);
@@ -144,6 +140,18 @@ class Auth extends Component {
 	swithAuthMode = () => {
 		this.setState(prevState => ({ isSignedUp: !prevState.isSignedUp }));
 	};
+
+	redirectUser() {
+		if (this.props.building) {
+			this.props.history.push("/checkout");
+		} else {
+			this.props.history.push("/");
+		}
+	}
+
+	authSuccess(response) {
+		this.props.onAuthSuccess(response.data.idToken, response.data.localId);
+	}
 
 	render() {
 		const formElementsArray = [];
