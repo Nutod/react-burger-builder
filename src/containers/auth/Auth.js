@@ -109,6 +109,11 @@ class Auth extends Component {
 		axios
 			.post(url, authData)
 			.then(response => {
+				const expirationDate = new Date(
+					new Date().getTime() + response.data.expiresIn * 1000
+				);
+				localStorage.setItem("token", response.data.idToken);
+				localStorage.setItem("expirationDate", expirationDate);
 				this.authSuccess(response);
 				this.checkExpirationTime(response.data.expiresIn);
 				this.redirectUser();
