@@ -26,7 +26,6 @@ class BurgerBuilder extends Component {
 		axios
 			.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
 			.then(response => {
-				console.log(response.data);
 				this.props.onFetchIngredientsSuccess(response.data);
 			})
 			.catch(error => {
