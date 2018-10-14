@@ -29,7 +29,6 @@ class BurgerBuilder extends Component {
 				this.props.onFetchIngredientsSuccess(response.data);
 			})
 			.catch(error => {
-				console.log(error);
 				this.props.onFetchIngredientsFailed();
 			});
 	};
