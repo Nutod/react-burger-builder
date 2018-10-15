@@ -20,5 +20,6 @@ export const authFail = dispatch => error =>
 export const logout = dispatch => () => {
 	localStorage.removeItem("token");
 	localStorage.removeItem("expirationDate");
+	localStorage.setItem("userId");
 	dispatch({ type: actionTypes.AUTH_LOGOUT });
 };
