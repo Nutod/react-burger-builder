@@ -10,6 +10,12 @@ class App extends Component {
 		console.log(this.props);
 	};
 
+	checkExpirationTime = expirationTime => {
+		setTimeout(() => {
+			this.props.authLogout();
+		}, expirationTime * 1000);
+	};
+
 	checkAuthState = () => {
 		const token = localStorage.getItem("token");
 		if (token) {
@@ -19,6 +25,9 @@ class App extends Component {
 			} else {
 				const userId = localStorage.getItem("userId");
 				this.props.authSuccess(token, userId);
+				this.checkExpirationTime(
+					expirationDate.getSeconds() - new Date().getSeconds()
+				);
 			}
 		}
 	};
