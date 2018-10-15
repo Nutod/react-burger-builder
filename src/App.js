@@ -7,7 +7,7 @@ import { logout, authSuccess } from "./containers/auth/AuthActions";
 
 class App extends Component {
 	componentDidMount = () => {
-		console.log(this.props);
+		this.checkAuthState();
 	};
 
 	checkExpirationTime = expirationTime => {
@@ -17,18 +17,21 @@ class App extends Component {
 	};
 
 	checkAuthState = () => {
+		console.log("Checking Auth State");
 		const token = localStorage.getItem("token");
 		if (token) {
 			const expirationDate = new Date(localStorage.getItem("expirationDate"));
-			if (expirationDate < new Date()) {
+			if (expirationDate <= new Date()) {
 				this.props.authLogout();
 			} else {
 				const userId = localStorage.getItem("userId");
 				this.props.authSuccess(token, userId);
 				this.checkExpirationTime(
-					expirationDate.getSeconds() - new Date().getSeconds()
+					(expirationDate.getTime() - new Date().getTime()) / 1000
 				);
 			}
+		} else {
+			console.log("Not logged in initially");
 		}
 	};
 
