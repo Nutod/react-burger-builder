@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import Layout from "./containers/Layout";
-import { logout } from "./containers/auth/AuthActions";
+import { logout, authSuccess } from "./containers/auth/AuthActions";
 
 class App extends Component {
 	componentDidMount = () => {
@@ -13,7 +13,13 @@ class App extends Component {
 	checkAuthState = () => {
 		const token = localStorage.getItem("token");
 		if (token) {
-			const expirationDate = localStorage.getItem("expirationDate");
+			const expirationDate = new Date(localStorage.getItem("expirationDate"));
+			if (expirationDate < new Date()) {
+				this.props.authLogout();
+			} else {
+				const userId = localStorage.getItem("userId");
+				this.props.authSuccess(token, userId);
+			}
 		}
 	};
 
@@ -27,7 +33,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-	onLogout: logout(dispatch)
+	authLogout: logout(dispatch),
+	authSuccess: authSuccess(dispatch)
 });
 
 export default withRouter(
