@@ -15,7 +15,7 @@ class Orders extends Component {
 			.get(
 				`https://burger-react-d3b90.firebaseio.com/orders.json?auth=${
 					this.props.token
-				}`
+				}&orderBy="userId"&equalTo="${this.props.userId}"`
 			)
 			.then(response => {
 				this.setState({ loading: true });
@@ -57,7 +57,8 @@ class Orders extends Component {
 
 const mapStateToProps = state => ({
 	orders: state.order.orders,
-	token: state.auth.token
+	token: state.auth.token,
+	userId: state.auth.userId
 });
 
 const mapDispatchToProps = dispatch => ({
