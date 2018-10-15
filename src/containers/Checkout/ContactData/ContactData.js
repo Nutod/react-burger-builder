@@ -111,13 +111,19 @@ class ContactData extends Component {
 		const order = {
 			ingredients: this.props.ingredients,
 			price: this.props.price,
-			orderData: formData
+			orderData: formData,
+			userId: this.props.userId
 		};
 
 		console.log(order);
 
 		axios
-			.post(`https://burger-react-d3b90.firebaseio.com/orders.json?auth=${this.props.token}`, order)
+			.post(
+				`https://burger-react-d3b90.firebaseio.com/orders.json?auth=${
+					this.props.token
+				}`,
+				order
+			)
 			.then(response => {
 				this.setState({ loading: false });
 				this.props.onPurchaseSuccess(response.data.name, order);
@@ -221,8 +227,9 @@ class ContactData extends Component {
 }
 
 const mapStateToProps = state => ({
-	token: state.auth.token
-})
+	token: state.auth.token,
+	userId: state.auth.userId
+});
 
 const mapDispatchToProps = dispatch => ({
 	onPurchaseSuccess: purchaseBurgerSuccess(dispatch),
