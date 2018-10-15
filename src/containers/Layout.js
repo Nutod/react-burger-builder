@@ -26,6 +26,23 @@ class Layout extends Component {
 	};
 
 	render() {
+		let routes = (
+			<Switch>
+				<Route path="/auth" component={Auth} />
+				<Route path="/" exact component={BurgerBuilder} />
+			</Switch>
+		);
+
+		if (this.props.isAuthenticated) {
+			routes = (
+				<Switch>
+					<Route path="/orders" component={Orders} />
+					<Route path="/checkout" component={Checkout} />
+					<Route path="/logout" component={Logout} />
+					<Route path="/" exact component={BurgerBuilder} />
+				</Switch>
+			);
+		}
 		return (
 			<Fragment>
 				<SideDrawer
@@ -37,15 +54,7 @@ class Layout extends Component {
 					openSidebar={this.sideDrawerOpenHandler}
 					authenticated={this.props.isAuthenticated}
 				/>
-				<main style={{ marginTop: "7rem" }}>
-					<Switch>
-						<Route path="/orders" component={Orders} />
-						<Route path="/checkout" component={Checkout} />
-						<Route path="/auth" component={Auth} />
-						<Route path="/logout" component={Logout} />
-						<Route path="/" exact component={BurgerBuilder} />
-					</Switch>
-				</main>
+				<main style={{ marginTop: "7rem" }}>{routes}</main>
 			</Fragment>
 		);
 	}
