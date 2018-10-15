@@ -114,11 +114,13 @@ class Auth extends Component {
 				);
 				localStorage.setItem("token", response.data.idToken);
 				localStorage.setItem("expirationDate", expirationDate);
+				localStorage.setItem("userId", response.data.localId);
 				this.authSuccess(response);
 				this.checkExpirationTime(response.data.expiresIn);
 				this.redirectUser();
 			})
 			.catch(error => {
+				console.log(error);
 				this.props.onAuthFail(error.response.data.error.message);
 			});
 	};
