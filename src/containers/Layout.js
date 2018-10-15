@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import BurgerBuilder from "../components/BurgerBuilder/BurgerBuilder";
 import Toolbar from "../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Checkout from "./Checkout/Checkout";
@@ -30,6 +30,7 @@ class Layout extends Component {
 			<Switch>
 				<Route path="/auth" component={Auth} />
 				<Route path="/" exact component={BurgerBuilder} />
+				<Redirect to="/" />
 			</Switch>
 		);
 
@@ -40,6 +41,7 @@ class Layout extends Component {
 					<Route path="/checkout" component={Checkout} />
 					<Route path="/logout" component={Logout} />
 					<Route path="/" exact component={BurgerBuilder} />
+					<Redirect to="/" />
 				</Switch>
 			);
 		}
