@@ -18,6 +18,7 @@ const AuthWrapper = styled.div`
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 	border: 1px solid #eee;
 	box-sizing: border-box;
+	margin-top: 7rem;
 
 	@media (min-width: 600px) {
 		width: 500px;

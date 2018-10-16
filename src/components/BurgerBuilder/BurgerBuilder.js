@@ -111,7 +111,7 @@ class BurgerBuilder extends Component {
 
 		if (this.props.error) {
 			burger = (
-				<p style={{ textAlign: "center" }}>Ingredients cannot be loaded</p>
+				<p style={{ textAlign: "center" }}>Ingredients cannot be loaded!</p>
 			);
 		}
 
@@ -143,7 +143,7 @@ class BurgerBuilder extends Component {
 						/>
 					) : null}
 				</Modal>
-				<div style={{ paddingTop: "7rem" }}>{burger}</div>
+				<div style={{ paddingTop: "8rem" }}>{burger}</div>
 			</Fragment>
 		);
 	}
