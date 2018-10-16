@@ -12,7 +12,6 @@ class App extends Component {
 	};
 
 	checkAuthState = () => {
-		console.log("Checking Auth State");
 		const token = localStorage.getItem("token");
 		if (token) {
 			const expirationDate = new Date(localStorage.getItem("expirationDate"));
@@ -25,8 +24,6 @@ class App extends Component {
 					(expirationDate.getTime() - new Date().getTime()) / 1000
 				);
 			}
-		} else {
-			console.log("Not logged in initially");
 		}
 	};
 
