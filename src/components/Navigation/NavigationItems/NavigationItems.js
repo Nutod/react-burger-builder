@@ -13,6 +13,7 @@ const NavigationList = styled.ul`
 
 	@media (min-width: 500px) {
 		flex-flow: row;
+		color: #444;
 	}
 `;
 

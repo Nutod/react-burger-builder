@@ -15,6 +15,7 @@ const NavigationListItem = styled.li`
 		height: 100 %;
 		width: auto;
 		align-items: center;
+		color: white;
 	}
 
 	& > * {
@@ -34,7 +35,7 @@ const NavigationListItem = styled.li`
 
 		@media (min-width: 500px) {
 			color: white;
-			height: 100 %;
+			height: 100%;
 			padding: 16px 10px;
 			border-bottom: 4px solid transparent;
 

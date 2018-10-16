@@ -38,6 +38,7 @@ class Layout extends Component {
 			routes = (
 				<Switch>
 					<Route path="/orders" component={Orders} />
+					<Route path="/auth" component={Auth} />
 					<Route path="/checkout" component={Checkout} />
 					<Route path="/logout" component={Logout} />
 					<Route path="/" exact component={BurgerBuilder} />
@@ -56,7 +57,7 @@ class Layout extends Component {
 					openSidebar={this.sideDrawerOpenHandler}
 					authenticated={this.props.isAuthenticated}
 				/>
-				<main style={{ marginTop: "7rem" }}>{routes}</main>
+				<main>{routes}</main>
 			</Fragment>
 		);
 	}
