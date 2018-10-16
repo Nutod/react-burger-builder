@@ -105,7 +105,7 @@ class Auth extends Component {
 			[controlName]: {
 				...this.state.controls[controlName],
 				value: event.target.value,
-				valid: this.checkValidity(
+				valid: checkValidity(
 					event.target.value,
 					this.state.controls[controlName].validation
 				),
