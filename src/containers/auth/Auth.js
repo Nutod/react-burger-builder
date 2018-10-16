@@ -11,6 +11,7 @@ import {
 import { authStart, authSuccess, authFail, logout } from "./AuthActions";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { checkValidity } from "../../shared/validation";
+import { checkExpirationTime } from "../../shared/expiration";
 
 const AuthWrapper = styled.div`
 	margin: 20px auto;
@@ -61,12 +62,6 @@ class Auth extends Component {
 		isSignedUp: false
 	};
 
-	checkExpirationTime = expirationTime => {
-		setTimeout(() => {
-			this.props.onLogout();
-		}, expirationTime * 1000);
-	};
-
 	orderHandler = event => {
 		event.preventDefault();
 		this.props.onAuthStart();
@@ -95,7 +90,7 @@ class Auth extends Component {
 				localStorage.setItem("expirationDate", expirationDate);
 				localStorage.setItem("userId", response.data.localId);
 				this.authSuccess(response);
-				this.checkExpirationTime(response.data.expiresIn);
+				checkExpirationTime(response.data.expiresIn);
 				this.redirectUser();
 			})
 			.catch(error => {
