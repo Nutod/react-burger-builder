@@ -143,7 +143,7 @@ class BurgerBuilder extends Component {
 						/>
 					) : null}
 				</Modal>
-				{burger}
+				<div style={{ paddingTop: "7rem" }}>{burger}</div>
 			</Fragment>
 		);
 	}
