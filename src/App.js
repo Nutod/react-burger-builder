@@ -4,16 +4,11 @@ import { withRouter } from "react-router-dom";
 
 import Layout from "./containers/Layout";
 import { logout, authSuccess } from "./containers/auth/AuthActions";
+import { checkExpirationTime } from "./shared/expiration";
 
 class App extends Component {
 	componentDidMount = () => {
 		this.checkAuthState();
-	};
-
-	checkExpirationTime = expirationTime => {
-		setTimeout(() => {
-			this.props.authLogout();
-		}, expirationTime * 1000);
 	};
 
 	checkAuthState = () => {
@@ -26,7 +21,7 @@ class App extends Component {
 			} else {
 				const userId = localStorage.getItem("userId");
 				this.props.authSuccess(token, userId);
-				this.checkExpirationTime(
+				checkExpirationTime(
 					(expirationDate.getTime() - new Date().getTime()) / 1000
 				);
 			}
