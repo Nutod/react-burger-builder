@@ -116,8 +116,6 @@ class ContactData extends Component {
 			userId: this.props.userId
 		};
 
-		console.log(order);
-
 		axios
 			.post(
 				`https://burger-react-d3b90.firebaseio.com/orders.json?auth=${
@@ -132,7 +130,6 @@ class ContactData extends Component {
 			})
 			.catch(error => {
 				this.props.onPurchaseFailed(error);
-				console.log(error);
 			});
 	};
 
