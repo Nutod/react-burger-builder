@@ -35,7 +35,6 @@ class Orders extends Component {
 				this.setState({ loading: false });
 				this.props.onFetchOrdersFail(error);
 			});
-		console.log(this.props);
 	};
 
 	render() {
