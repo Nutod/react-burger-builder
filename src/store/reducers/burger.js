@@ -1,15 +1,15 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const INGREDIENT_PRICES = {
-	salad: 1,
-	bacon: 1.5,
-	meat: 1.3,
-	cheese: 1.1
+	salad: 50,
+	bacon: 200,
+	meat: 130,
+	cheese: 100
 };
 
 const initialState = {
 	ingredients: null,
-	price: 5,
+	price: 500,
 	loading: false,
 	error: false,
 	building: false
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				ingredients: { ...action.ingredients },
-				price: 5,
+				price: 500,
 				error: false,
 				building: false
 			};
