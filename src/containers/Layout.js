@@ -9,6 +9,11 @@ import Checkout from "./Checkout/Checkout";
 import Orders from "./Orders/Orders";
 import Auth from "./auth/Auth";
 import Logout from "./auth/Logout/Logout";
+// import asyncComponent from "../HOCs/asyncComponent/asyncComponent";
+
+// const asyncCheckout = asyncComponent(() => {
+// 	return import('./Checkout/Checkout')
+// })
 
 // Running yarn eject means you still have to run npm install afterwards as the entire app breaks as of React 16.5
 
