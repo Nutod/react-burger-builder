@@ -24,25 +24,34 @@ export default (state = initialState, action) => {
 			return removeIngredient(state, action);
 
 		case actionTypes.FETCH_INGREDIENTS_SUCCESS:
-			return {
-				...state,
-				ingredients: { ...action.ingredients },
-				price: 500,
-				error: false,
-				building: false
-			};
+			return fetchIngredientsSuccess(state, action);
 
 		case actionTypes.FETCH_INGREDIENTS_FAILED:
-			return {
-				...state,
-				error: true,
-				building: false
-			};
+			return fetchIngredientsFailed(state);
 
 		default:
 			return state;
 	}
 };
+
+function fetchIngredientsFailed(state) {
+	return {
+		...state,
+		error: true,
+		building: false
+	};
+}
+
+function fetchIngredientsSuccess(state, action) {
+	return {
+		...state,
+		ingredients: { ...action.ingredients },
+		price: 500,
+		error: false,
+		building: false
+	};
+}
+
 function removeIngredient(state, action) {
 	return {
 		...state,
