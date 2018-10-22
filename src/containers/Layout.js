@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import BurgerBuilder from "../components/BurgerBuilder/BurgerBuilder";
 import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
 import Toolbar from "../components/Navigation/Toolbar/Toolbar";
-import Logout from "./auth/Logout/Logout";
 import asyncComponent from "../HOCs/asyncComponent/asyncComponent";
 
 const asyncCheckout = asyncComponent(() => {
@@ -18,6 +17,10 @@ const asyncOrders = asyncComponent(() => {
 
 const asyncAuth = asyncComponent(() => {
 	return import("./auth/Auth");
+});
+
+const asyncLogout = asyncComponent(() => {
+	return import("./auth/Logout/Logout");
 });
 
 // Running yarn eject means you still have to run npm install afterwards as the entire app breaks as of React 16.5
@@ -50,7 +53,7 @@ class Layout extends Component {
 					<Route path="/orders" component={asyncOrders} />
 					<Route path="/auth" component={asyncAuth} />
 					<Route path="/checkout" component={asyncCheckout} />
-					<Route path="/logout" component={Logout} />
+					<Route path="/logout" component={asyncLogout} />
 					<Route path="/" exact component={BurgerBuilder} />
 					<Redirect to="/" />
 				</Switch>

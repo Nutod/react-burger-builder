@@ -18,15 +18,7 @@ const initialState = {
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_INGREDIENT:
-			return {
-				...state,
-				ingredients: {
-					...state.ingredients,
-					[action.ingredientName]: state.ingredients[action.ingredientName] + 1
-				},
-				price: state.price + INGREDIENT_PRICES[action.ingredientName],
-				building: true
-			};
+			return addIngredient(state, action);
 
 		case actionTypes.REMOVE_INGREDIENT:
 			return {
@@ -64,3 +56,14 @@ export default (state = initialState, action) => {
 			return state;
 	}
 };
+function addIngredient(state, action) {
+	return {
+		...state,
+		ingredients: {
+			...state.ingredients,
+			[action.ingredientName]: state.ingredients[action.ingredientName] + 1
+		},
+		price: state.price + INGREDIENT_PRICES[action.ingredientName],
+		building: true
+	};
+}
