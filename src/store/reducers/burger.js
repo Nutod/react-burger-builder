@@ -23,11 +23,6 @@ export default (state = initialState, action) => {
 		case actionTypes.REMOVE_INGREDIENT:
 			return removeIngredient(state, action);
 
-		case actionTypes.FETCH_INGREDIENTS_START:
-			return {
-				...state
-			};
-
 		case actionTypes.FETCH_INGREDIENTS_SUCCESS:
 			return {
 				...state,
