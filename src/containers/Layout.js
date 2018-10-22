@@ -1,19 +1,24 @@
 import React, { Component, Fragment } from "react";
-import BurgerBuilder from "../components/BurgerBuilder/BurgerBuilder";
-import Toolbar from "../components/Navigation/Toolbar/Toolbar";
-import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Checkout from "./Checkout/Checkout";
-import Orders from "./Orders/Orders";
-import Auth from "./auth/Auth";
+import BurgerBuilder from "../components/BurgerBuilder/BurgerBuilder";
+import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
+import Toolbar from "../components/Navigation/Toolbar/Toolbar";
 import Logout from "./auth/Logout/Logout";
-// import asyncComponent from "../HOCs/asyncComponent/asyncComponent";
+import asyncComponent from "../HOCs/asyncComponent/asyncComponent";
 
-// const asyncCheckout = asyncComponent(() => {
-// 	return import('./Checkout/Checkout')
-// })
+const asyncCheckout = asyncComponent(() => {
+	return import("./Checkout/Checkout");
+});
+
+const asyncOrders = asyncComponent(() => {
+	return import("./Orders/Orders");
+});
+
+const asyncAuth = asyncComponent(() => {
+	return import("./auth/Auth");
+});
 
 // Running yarn eject means you still have to run npm install afterwards as the entire app breaks as of React 16.5
 
@@ -33,7 +38,7 @@ class Layout extends Component {
 	render() {
 		let routes = (
 			<Switch>
-				<Route path="/auth" component={Auth} />
+				<Route path="/auth" component={asyncAuth} />
 				<Route path="/" exact component={BurgerBuilder} />
 				<Redirect to="/" />
 			</Switch>
@@ -42,9 +47,9 @@ class Layout extends Component {
 		if (this.props.isAuthenticated) {
 			routes = (
 				<Switch>
-					<Route path="/orders" component={Orders} />
-					<Route path="/auth" component={Auth} />
-					<Route path="/checkout" component={Checkout} />
+					<Route path="/orders" component={asyncOrders} />
+					<Route path="/auth" component={asyncAuth} />
+					<Route path="/checkout" component={asyncCheckout} />
 					<Route path="/logout" component={Logout} />
 					<Route path="/" exact component={BurgerBuilder} />
 					<Redirect to="/" />
