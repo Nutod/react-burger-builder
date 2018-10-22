@@ -21,15 +21,7 @@ export default (state = initialState, action) => {
 			return addIngredient(state, action);
 
 		case actionTypes.REMOVE_INGREDIENT:
-			return {
-				...state,
-				ingredients: {
-					...state.ingredients,
-					[action.ingredientName]: state.ingredients[action.ingredientName] - 1
-				},
-				price: state.price - INGREDIENT_PRICES[action.ingredientName],
-				building: true
-			};
+			return removeIngredient(state, action);
 
 		case actionTypes.FETCH_INGREDIENTS_START:
 			return {
@@ -56,6 +48,18 @@ export default (state = initialState, action) => {
 			return state;
 	}
 };
+function removeIngredient(state, action) {
+	return {
+		...state,
+		ingredients: {
+			...state.ingredients,
+			[action.ingredientName]: state.ingredients[action.ingredientName] - 1
+		},
+		price: state.price - INGREDIENT_PRICES[action.ingredientName],
+		building: true
+	};
+}
+
 function addIngredient(state, action) {
 	return {
 		...state,
