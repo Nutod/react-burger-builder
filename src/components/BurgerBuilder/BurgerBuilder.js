@@ -22,16 +22,20 @@ class BurgerBuilder extends Component {
 	};
 
 	componentDidMount = () => {
+		// Fetching the Ingredients whenever the component mounts
 		axios
 			.get("https://burger-react-d3b90.firebaseio.com/ingredients.json")
 			.then(response => {
+				// Dispatching a Success Action when response is gotten
 				this.props.onFetchIngredientsSuccess(response.data);
 			})
 			.catch(error => {
+				// Dispatching a Failure Action
 				this.props.onFetchIngredientsFailed();
 			});
 	};
 
+	// Function for updating purchase state to enable and disable the order button
 	updatePurchaseState = () => {
 		const sum = Object.keys(this.props.ings)
 			.map(igKey => this.props.ings[igKey])
@@ -102,19 +106,23 @@ class BurgerBuilder extends Component {
 	};
 
 	render() {
+		// Logic to convert the Ingredient Object value into Boolean for disabling the 'less' button
 		const disabledInfo = { ...this.props.ings };
 		for (let key in disabledInfo) {
 			disabledInfo[key] = disabledInfo[key] <= 0;
 		}
 
+		// Default Element for the Burger Component
 		let burger = <Spinner />;
 
+		// Error state element for the Burger Component when something goes wrong
 		if (this.props.error) {
 			burger = (
 				<p style={{ textAlign: "center" }}>Ingredients cannot be loaded!</p>
 			);
 		}
 
+		// Burger Component populated with Ingredients from the Store
 		if (this.props.ings) {
 			burger = (
 				<Fragment>
@@ -156,6 +164,7 @@ const mapStateToProps = state => ({
 	isAuthenticated: state.auth.token !== null
 });
 
+// mapDispatchToProps used with Dependecy Injection. It can be adjusted to use Objects
 const mapDispatchToProps = dispatch => ({
 	onIngredientAdded: addIngredient(dispatch),
 	onIngredientRemoved: removeIngredient(dispatch),
@@ -163,6 +172,7 @@ const mapDispatchToProps = dispatch => ({
 	onFetchIngredientsFailed: fetchIngredientsFailed(dispatch)
 });
 
+// BurgerBuilder Component wrapper with a HOC to catch request and response errors with API requests
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
