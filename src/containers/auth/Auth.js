@@ -4,14 +4,11 @@ import { connect } from "react-redux";
 import axios from "axios";
 
 import Input from "../../components/UI/Input/Input";
-import {
-	ButtonSuccess,
-	ButtonDanger
-} from "../../components/Burger/OrderSummary/OrderSummary";
 import { authStart, authSuccess, authFail, logout } from "./AuthActions";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { checkValidity } from "../../shared/validation";
 import { checkExpirationTime } from "../../shared/expiration";
+import { ButtonDanger, ButtonSuccess } from "../../components/Elements/Button";
 
 const AuthWrapper = styled.div`
 	margin: 20px auto;
