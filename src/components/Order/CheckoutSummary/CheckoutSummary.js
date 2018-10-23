@@ -1,10 +1,7 @@
 import React from "react";
 import Burger from "../../Burger/Burger";
-import {
-	ButtonDanger,
-	ButtonSuccess
-} from "../../Burger/OrderSummary/OrderSummary";
 import styled from "styled-components";
+import { ButtonDanger, ButtonSuccess } from "../../Elements/Button";
 
 const CheckoutSummaryWrapper = styled.div`
 	text-align: center;
