@@ -4,7 +4,6 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import { withRouter } from "react-router-dom";
-import { ButtonSuccess } from "../../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
 import {
@@ -12,6 +11,7 @@ import {
 	purchaseBurgerFailed
 } from "../../Orders/OrderActions";
 import { checkValidity } from "../../../shared/validation";
+import { ButtonSuccess } from "../../../components/Elements/Button";
 
 const ContactDataWrapper = styled.div`
 	margin: 20px auto;
