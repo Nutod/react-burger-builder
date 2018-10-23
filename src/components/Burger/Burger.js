@@ -33,14 +33,14 @@ const BurgerDiv = styled.div`
 `;
 
 const Burger = ({ ingredients }) => {
-	// Pretty neat logic here
+	// Logic for transforming the Object Ingredients into array that corresponds with the Ingredient type
 	let transformedIngredients = Object.keys(ingredients)
 		.map(igKey => {
 			return [...Array(ingredients[igKey])].map((_, i) => (
 				<BurgerIngredient key={igKey + i} type={igKey} />
 			));
 		})
-		.reduce((arr, el) => arr.concat(el), []);
+		.reduce((arr, el) => [...arr, el], []);
 
 	if (transformedIngredients.length === 0) {
 		transformedIngredients = <p>Please add Ingredients</p>;

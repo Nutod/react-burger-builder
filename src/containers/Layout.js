@@ -23,9 +23,9 @@ const asyncLogout = asyncComponent(() => {
 	return import("./auth/Logout/Logout");
 });
 
-// Running yarn eject means you still have to run npm install afterwards as the entire app breaks as of React 16.5
-
+// Wrapper Component that wraps the entire app
 class Layout extends Component {
+	// State to display side drawer
 	state = {
 		showSideDrawer: false
 	};
@@ -39,6 +39,7 @@ class Layout extends Component {
 	};
 
 	render() {
+		// Default routes for unauthenticated users
 		let routes = (
 			<Switch>
 				<Route path="/auth" component={asyncAuth} />
@@ -48,6 +49,7 @@ class Layout extends Component {
 		);
 
 		if (this.props.isAuthenticated) {
+			// Routes for authenticated users
 			routes = (
 				<Switch>
 					<Route path="/orders" component={asyncOrders} />

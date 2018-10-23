@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+// Component for lazy loading Components loaded with Routing
 export default importComponent => {
 	return class extends Component {
 		state = {
