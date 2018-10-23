@@ -16,6 +16,7 @@ export const Button = styled.button`
 		padding-left: 0;
 	}
 `;
+
 export const ButtonSuccess = styled(Button)`
 	color: #5c9210;
 

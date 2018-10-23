@@ -1,17 +1,8 @@
 import React from "react";
 import Burger from "../../Burger/Burger";
-import styled from "styled-components";
 import { ButtonDanger, ButtonSuccess } from "../../Elements/Button";
+import { CheckoutSummaryWrapper } from "../../Elements/Wrappers";
 
-const CheckoutSummaryWrapper = styled.div`
-	text-align: center;
-	width: 100%;
-	margin: auto;
-
-	@media (min-width: 600px) {
-		width: 500px;
-	}
-`;
 
 const checkoutSummary = props => {
 	return (

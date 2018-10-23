@@ -7,10 +7,12 @@ import { logout, authSuccess } from "./containers/auth/AuthActions";
 import { checkExpirationTime } from "./shared/expiration";
 
 class App extends Component {
+	// Checking for Auth State whenever the Component mounts
 	componentDidMount = () => {
 		this.checkAuthState();
 	};
 
+	// Method to log users in by checking the local storage
 	checkAuthState = () => {
 		const token = localStorage.getItem("token");
 		if (token) {
@@ -41,6 +43,7 @@ const mapDispatchToProps = dispatch => ({
 	authSuccess: authSuccess(dispatch)
 });
 
+// Added withRouter HOC to prevent the Component from breaking because of connect
 export default withRouter(
 	connect(
 		null,

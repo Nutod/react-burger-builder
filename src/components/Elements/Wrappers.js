@@ -29,3 +29,13 @@ export const BurgerWrapper = styled.div`
 		}
 	}
 `;
+
+export const CheckoutSummaryWrapper = styled.div`
+	text-align: center;
+	width: 100%;
+	margin: auto;
+
+	@media (min-width: 600px) {
+		width: 500px;
+	}
+`;
